@@ -1,34 +1,44 @@
-// Configuration for your app
-// https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file
+/******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                     *
+ * @CreatedDate           : 2025-04-04 13:49:36                               *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                     *
+ * @LastEditDate          : 2025-04-19 18:58:58                               *
+ * @FilePath              : docs-web/quasar.config.js                         *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
+ *****************************************************************************/
+
+/**
+ * Quasar App (v2) Configuration
+ * @see https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file
+ */
 
 import { defineConfig } from '#q-app/wrappers'
+import { readFileSync } from 'fs'
+import { constants } from 'zlib'
 
-export default defineConfig((ctx) => {
+export default defineConfig(() => {
   return {
     eslint: {
-      // fix: true,
+      fix: true,
       // include: [],
       // exclude: [],
       // cache: false,
       // rawEsbuildEslintOptions: {},
       // rawWebpackEslintPluginOptions: {},
       warnings: true,
-      errors: true
+      errors: true,
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
-    // preFetch: true,
+    preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: [
-    ],
+    boot: ['quasar', 'i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#css
-    css: [
-      'app.scss'
-    ],
+    css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -39,8 +49,7 @@ export default defineConfig((ctx) => {
       // 'themify',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
-      'roboto-font', // optional, you are not bound to it
+      // 'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
     ],
 
@@ -57,29 +66,89 @@ export default defineConfig((ctx) => {
       // webpackTranspileDependencies: [],
 
       esbuildTarget: {
-        browser: [ 'es2022', 'firefox115', 'chrome115', 'safari14' ],
-        node: 'node20'
+        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
+        node: 'node20',
       },
 
       // rtl: true, // https://quasar.dev/options/rtl-support
-      // showProgress: false,
-      // gzip: true,
-      // analyze: true,
+      preloadChunks: true,
+      showProgress: true,
+      gzip: {
+        filename: '[path][base].gz',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css|html|json|ttf|svg|png|woff)$/,
+        compressionOptions: {
+          params: {
+            [constants.BROTLI_PARAM_QUALITY]: 11,
+          },
+        },
+        threshold: 1024,
+        minRatio: 0.8,
+        deleteOriginalAssets: false,
+      },
+      analyze: true,
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/sorrycc/webpack-chain
-      // chainWebpack (/* chain, { isClient, isServer } */) {}
+      chainWebpack(chain) {
+        chain.optimization.splitChunks({
+          chunks: 'async',
+          minSize: 20000,
+          minRemainingSize: 0,
+          minChunks: 1,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          enforceSizeThreshold: 50000,
+          cacheGroups: {
+            defaultVendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10,
+              reuseExistingChunk: true,
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
+          },
+        })
+      },
+
+      afterBuild() {
+        let pkg = readFileSync('package.json')
+        pkg = JSON.parse(pkg)
+        console.log('\u001b[35m Update package to ' + pkg.version + '\u001b[0m')
+      },
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
+
+      // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
+      extendWebpack(cfg) {
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias, // This adds the existing alias
+        }
+        console.debug(' webpack-aliases:', cfg.resolve.alias)
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#devserver
     devServer: {
-      server: {
-        type: 'http'
-      },
-      open: true // opens browser window automatically
+      port: 9000, // the devServer <port> must be same, otherwise you will receive some <forbidden> result.
+      open: true, // opens browser window automatically
+      proxy: [
+        {
+          context: ['/docs', '/docs-api'],
+          target: 'http://127.0.0.1:8090',
+        },
+      ],
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#framework
@@ -97,7 +166,16 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Cookies',
+        'Dialog',
+        'Loading',
+        'Notify',
+        'LoadingBar',
+        'LocalStorage',
+        'SessionStorage',
+        'Meta',
+      ],
     },
 
     // animations: 'all', // --- includes all animations
@@ -121,10 +199,10 @@ export default defineConfig((ctx) => {
     // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
     ssr: {
       prodPort: 3000, // The default port that the production server should use
-                      // (gets superseded if process.env.PORT is specified at runtime)
+      // (gets superseded if process.env.PORT is specified at runtime)
 
       middlewares: [
-        'render' // keep this as last one
+        'render', // keep this as last one
       ],
 
       // extendPackageJson (json) {},
@@ -135,7 +213,7 @@ export default defineConfig((ctx) => {
       // manualStoreHydration: true,
       // manualPostHydrationTrigger: true,
 
-      pwa: false
+      pwa: false,
       // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
 
       // pwaExtendGenerateSWOptions (cfg) {},
@@ -144,7 +222,7 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
     pwa: {
-      workboxMode: 'GenerateSW' // 'GenerateSW' or 'InjectManifest'
+      workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       // swFilename: 'sw.js',
       // manifestFilename: 'manifest.json',
       // extendManifestJson (json) {},
@@ -162,7 +240,7 @@ export default defineConfig((ctx) => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
@@ -173,7 +251,7 @@ export default defineConfig((ctx) => {
       // extendPackageJson (json) {},
 
       // Electron preload scripts (if any) from /src-electron, WITHOUT file extension
-      preloadScripts: [ 'electron-preload' ],
+      preloadScripts: ['electron-preload'],
 
       // specify the debugging port to use for the Electron app when running in development mode
       inspectPort: 5858,
@@ -182,13 +260,11 @@ export default defineConfig((ctx) => {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -196,8 +272,8 @@ export default defineConfig((ctx) => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar-project'
-      }
+        appId: 'docs-web',
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-browser-extensions/configuring-bex
@@ -213,7 +289,7 @@ export default defineConfig((ctx) => {
        *
        * @example [ 'my-script.ts', 'sub-folder/my-other-script.js' ]
        */
-      extraScripts: []
-    }
+      extraScripts: [],
+    },
   }
 })

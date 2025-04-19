@@ -1,8 +1,17 @@
+/******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                     *
+ * @CreatedDate           : 2025-04-19 17:00:21                               *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                     *
+ * @LastEditDate          : 2025-04-19 17:00:21                               *
+ * @FilePath              : docs-web/eslint.config.js                         *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
+ *****************************************************************************/
+
 import js from '@eslint/js'
-import globals from 'globals'
-import pluginVue from 'eslint-plugin-vue'
 import pluginQuasar from '@quasar/app-webpack/eslint'
 import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 
 export default [
   {
@@ -14,7 +23,7 @@ export default [
      *
      * ESLint requires "ignores" key to be the only one in this object
      */
-    // ignores: []
+    ignores: ['*.json'],
   },
 
   ...pluginQuasar.configs.recommended(),
@@ -32,7 +41,7 @@ export default [
    * pluginVue.configs["flat/recommended"]
    *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
    */
-  ...pluginVue.configs[ 'flat/essential' ],
+  ...pluginVue.configs['flat/essential'],
 
   {
     languageOptions: {
@@ -47,8 +56,8 @@ export default [
         cordova: 'readonly',
         Capacitor: 'readonly',
         chrome: 'readonly', // BEX related
-        browser: 'readonly' // BEX related
-      }
+        browser: 'readonly', // BEX related
+      },
     },
 
     // add your custom rules here
@@ -56,18 +65,18 @@ export default [
       'prefer-promise-reject-errors': 'off',
 
       // allow debugger during development only
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-    }
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    },
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.js' ],
+    files: ['src-pwa/custom-service-worker.js'],
     languageOptions: {
       globals: {
-        ...globals.serviceworker
-      }
-    }
+        ...globals.serviceworker,
+      },
+    },
   },
 
-  prettierSkipFormatting
+  prettierSkipFormatting,
 ]

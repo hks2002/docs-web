@@ -3,8 +3,14 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "vue.volar",
-    "wayou.vscode-todo-highlight"
+    "wayou.vscode-todo-highlight",
+    "merbleueaviation.auto-header-plus",
+    "steoates.autoimport",
+    "streetsidesoftware.code-spell-checker",
+    "merbleueaviation.emoji-commit-tiny",
+    "lokalise.i18n-ally",
+    "christian-kohler.path-intellisense",
+    "vue.volar"
   ],
   "unwantedRecommendations": [
     "octref.vetur",
