@@ -1,0 +1,36 @@
+{
+  "F": {
+    "FILE_NAME": "文件名",
+    "LAST_MODIFIED_DATE": "最后修改日期",
+    "SIZE": "大小"
+  },
+  "S": {
+    "APP_NAME": "Docs",
+    "BP_CODE": "客户/供应商代码",
+    "CONTACT_ADMIN": "联系管理员",
+    "DEVELOPED_BY": "由 Dedienne China 开发",
+    "DOCS_IN{LOCATION}": "位于{LOCATION}的文档",
+    "DOC_ACCESS_LOG": "文档访问记录",
+    "DOC_SEARCH": "文档搜索",
+    "DOC_SHARE_LOG": "文档分享记录",
+    "DOC_UPLOAD_LOG": "文档上传记录",
+    "DO_NOT_FORGET_BP_NAME": "输入客户或供应商代码可淡化水印",
+    "EXIT": "退出",
+    "Home": "首页",
+    "LOAD_PROFILE": "加载配置...",
+    "LOGIN": "登录",
+    "LOGIN_NAME_NOTE": "电脑账号",
+    "NOT_AUTHORIZED": "未授权",
+    "NOT_FOUND": "资源未找到",
+    "OK": "确定",
+    "ONLY_FILES": "仅文档, 排除文件夹",
+    "OOPS": "哦噢",
+    "PASSWORD": "密码",
+    "POWERED_BY": "使用Quasar和Vertx构建",
+    "SERVER_ERROR": "服务器错误",
+    "TIPS": "提示",
+    "UPLOAD_FILES": "上传文档"
+  },
+  "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD} ",
+  "{VAR_HOLD}": "{VAR_HOLD}"
+}

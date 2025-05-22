@@ -1,1 +1,12 @@
 // app global css in SCSS form
+.q-link--focusable {
+  cursor: pointer
+}
+
+tbody tr:nth-child(even) {
+  background: #eeeeee;
+}
+
+.q-table--dense .q-table__top {
+  min-height: 52px;
+}

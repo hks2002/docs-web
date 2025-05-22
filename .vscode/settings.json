@@ -1,15 +1,5 @@
 {
-  "[json][jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  // Copyright header
-  "auto-header-plus.commentElementsValue": {
-    "CopyRight": "Dedienne Aerospace China ZhuHai"
-  },
-  "editor.codeActionsOnSave": [
-   "source.organizeImports",
-    "source.fixAll.eslint" ,
-  ],
+  // editor default
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -20,10 +10,25 @@
     "typescript",
     "vue"
   ],
+  "editor.codeActionsOnSave": [
+   "source.organizeImports",
+    "source.fixAll.eslint" ,
+  ],
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Copyright header
+  "auto-header-plus.commentElementsValue": {
+    "CopyRight": "Dedienne Aerospace China ZhuHai"
+  },
   // i18n-ally, displayLanguage is important
   "i18n-ally.displayLanguage": "en-US",
   "i18n-ally.localesPaths": [
     "src/i18n"
   ],
-  "i18n-ally.sortKeys": true
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.keystyle": "nested"
 }

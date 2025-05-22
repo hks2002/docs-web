@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 13:49:36                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-04-19 18:58:58                               *
+ * @LastEditDate          : 2025-06-03 11:39:56                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -13,8 +13,13 @@
  */
 
 import { defineConfig } from '#q-app/wrappers'
+import { compress } from '@mongodb-js/zstd'
 import { readFileSync } from 'fs'
-import { constants } from 'zlib'
+
+let pkgText = readFileSync('package.json')
+let pkg = JSON.parse(pkgText)
+let pkgVersion = pkg.version
+let pkgName = pkg.name
 
 export default defineConfig(() => {
   return {
@@ -35,7 +40,7 @@ export default defineConfig(() => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: ['quasar', 'i18n', 'axios'],
+    boot: ['quasar', 'i18n', 'router', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#css
     css: ['app.scss'],
@@ -55,7 +60,7 @@ export default defineConfig(() => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#build
     build: {
-      // publicPath: '/',
+      publicPath: '/' + pkgName + '/',
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // webpackTranspile: false,
@@ -74,13 +79,20 @@ export default defineConfig(() => {
       preloadChunks: true,
       showProgress: true,
       gzip: {
-        filename: '[path][base].gz',
-        algorithm: 'brotliCompress',
         test: /\.(js|css|html|json|ttf|svg|png|woff)$/,
+        filename: '[path][base].zst',
+        algorithm: function (input, options, callback) {
+          compress(input, options.level ?? 3) // default level is 3
+            .then((result) => {
+              return callback(null, result)
+            })
+            .catch((err) => {
+              return callback(err)
+            })
+        },
+        // change the default compression options
         compressionOptions: {
-          params: {
-            [constants.BROTLI_PARAM_QUALITY]: 11,
-          },
+          level: 4,
         },
         threshold: 1024,
         minRatio: 0.8,
@@ -96,12 +108,12 @@ export default defineConfig(() => {
       chainWebpack(chain) {
         chain.optimization.splitChunks({
           chunks: 'async',
-          minSize: 20000,
+          minSize: 20480, // low for bad network
           minRemainingSize: 0,
           minChunks: 1,
           maxAsyncRequests: 30,
           maxInitialRequests: 30,
-          enforceSizeThreshold: 50000,
+          enforceSizeThreshold: 40960,
           cacheGroups: {
             defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
@@ -118,9 +130,7 @@ export default defineConfig(() => {
       },
 
       afterBuild() {
-        let pkg = readFileSync('package.json')
-        pkg = JSON.parse(pkg)
-        console.log('\u001b[35m Update package to ' + pkg.version + '\u001b[0m')
+        console.log('\u001b[35m Update package to ' + pkgVersion + '\u001b[0m')
       },
       uglifyOptions: {
         compress: {
@@ -135,7 +145,7 @@ export default defineConfig(() => {
         cfg.resolve.alias = {
           ...cfg.resolve.alias, // This adds the existing alias
         }
-        console.debug(' webpack-aliases:', cfg.resolve.alias)
+        // console.debug(' webpack-aliases:', cfg.resolve.alias)
       },
     },
 
@@ -145,7 +155,7 @@ export default defineConfig(() => {
       open: true, // opens browser window automatically
       proxy: [
         {
-          context: ['/docs', '/docs-api'],
+          context: ['/docs-api'],
           target: 'http://127.0.0.1:8090',
         },
       ],
@@ -166,16 +176,7 @@ export default defineConfig(() => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        'Cookies',
-        'Dialog',
-        'Loading',
-        'Notify',
-        'LoadingBar',
-        'LocalStorage',
-        'SessionStorage',
-        'Meta',
-      ],
+      plugins: ['Cookies', 'Dialog', 'Loading', 'Notify', 'LoadingBar', 'Meta', 'SessionStorage'],
     },
 
     // animations: 'all', // --- includes all animations
