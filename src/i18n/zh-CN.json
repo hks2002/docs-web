@@ -7,6 +7,7 @@
   "S": {
     "APP_NAME": "Docs",
     "BP_CODE": "客户/供应商代码",
+    "CONFIRM": "确认",
     "CONTACT_ADMIN": "联系管理员",
     "DEVELOPED_BY": "由 Dedienne China 开发",
     "DOCS_IN{LOCATION}": "位于{LOCATION}的文档",
@@ -14,6 +15,7 @@
     "DOC_SEARCH": "文档搜索",
     "DOC_SHARE_LOG": "文档分享记录",
     "DOC_UPLOAD_LOG": "文档上传记录",
+    "DO_YOU_KNOWN": "你是否知道？",
     "DO_NOT_FORGET_BP_NAME": "输入客户或供应商代码可淡化水印",
     "EXIT": "退出",
     "Home": "首页",
