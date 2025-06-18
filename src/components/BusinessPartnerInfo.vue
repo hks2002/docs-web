@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 14:55:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-04-25 10:41:29
+* @LastEditDate          : 2025-06-19 01:53:47
 * @FilePath              : docs-web/src/components/BusinessPartnerInfo.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -15,7 +15,7 @@
     <q-input
       dense
       clearable
-      debounce="1000"
+      debounce="2000"
       color="white"
       input-class="text-orange"
       :placeholder="$t('S.BP_CODE')"

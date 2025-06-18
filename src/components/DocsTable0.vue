@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-17 00:54:46
+* @LastEditDate          : 2025-06-19 01:51:33
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -47,7 +47,7 @@
           dense
           clearable
           outlined
-          debounce="1000"
+          debounce="2000"
           input-style="font-weight:bolder;text-transform:uppercase"
           :placeholder="$t('S.DOC_SEARCH')"
           :model-value="searchPN"
