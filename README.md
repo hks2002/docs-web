@@ -1,6 +1,6 @@
-# Quasar App
+# Docs Web
 
-A Quasar Project
+The web page for docs system
 
 ## Install the dependencies
 
