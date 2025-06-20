@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-19 01:51:33
+* @LastEditDate          : 2025-06-20 13:05:08
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -90,8 +90,8 @@ const docs = ref([])
 const { searchPN, currentPath } = storeToRefs(useSessionStore())
 
 const doSearch = (val) => {
-  searchPN.value = val
   if (val && val.length >= 3) {
+    searchPN.value = val
     showLoading.value = true
     axios
       .get('/docs-api/searchDocs' + '?PN=' + val)
@@ -130,6 +130,10 @@ const goTo = (url) => {
 watch(currentPath, doList)
 
 onMounted(() => {
-  doList()
+  if (searchPN.value && searchPN.value.length >= 3) {
+    doSearch(searchPN.value)
+  } else {
+    doList()
+  }
 })
 </script>
