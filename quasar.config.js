@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 13:49:36                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-06-03 11:39:56                               *
+ * @LastEditDate          : 2025-06-28 21:15:47                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -151,7 +151,6 @@ export default defineConfig(() => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#devserver
     devServer: {
-      port: 9000, // the devServer <port> must be same, otherwise you will receive some <forbidden> result.
       open: true, // opens browser window automatically
       proxy: [
         {
