@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-17 00:55:44
+* @LastEditDate          : 2025-07-15 23:30:54
 * @FilePath              : docs-web/src/components/DocsTable2.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -32,8 +32,8 @@
 </template>
 
 <script setup>
+import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import { axios } from 'src/boot/axios'
 import { onMounted, ref, watch } from 'vue'
 
 import { useSessionStore } from 'src/stores/SessionStore'

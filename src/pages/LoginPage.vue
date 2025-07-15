@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 21:12:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-19 02:37:01
+* @LastEditDate          : 2025-07-16 00:08:49
 * @FilePath              : docs-web/src/pages/LoginPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -92,9 +92,9 @@ import axios from 'axios'
 import { storeToRefs } from 'pinia'
 import { SessionStorage, useQuasar } from 'quasar'
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { authToken, isEmail } from 'src/assets/auth.js'
-import { t } from 'src/boot/i18n'
 import { Router } from 'src/boot/router'
 import { useSessionStore } from 'src/stores/SessionStore'
 
@@ -103,6 +103,7 @@ import SelectLanguage from 'src/components/SelectLanguage.vue'
 
 // common vars
 const $q = useQuasar()
+const { t } = useI18n()
 
 // page vars
 const isLgXs = $q.screen.gt.xs

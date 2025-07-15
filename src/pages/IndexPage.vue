@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 23:26:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-28 21:19:28
+* @LastEditDate          : 2025-07-16 00:11:34
 * @FilePath              : docs-web/src/pages/IndexPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -26,15 +26,27 @@
 </template>
 
 <script setup>
-import { axios } from 'src/boot/axios'
+import axios from 'axios'
+import { storeToRefs } from 'pinia'
+import { Cookies } from 'quasar'
+import { onMounted, onUnmounted } from 'vue'
+
+import { Router } from 'src/boot/router'
 import DocsTable0 from 'src/components/DocsTable0.vue'
 import DocsTable1 from 'src/components/DocsTable1.vue'
 import DocsTable2 from 'src/components/DocsTable2.vue'
-import { onMounted, onUnmounted } from 'vue'
+import { useSessionStore } from 'src/stores/SessionStore'
 
 let timer = null
 
 const checkSession = () => {
+  const { userInfo } = storeToRefs(useSessionStore())
+  if (userInfo.value.length === 0) {
+    Cookies.remove('vertx-web.session')
+    Router.push({ name: 'LoginPage' })
+    return
+  }
+
   axios
     .get('/docs-api/check-session')
     .then((response) => {

@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 14:55:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-05-10 22:53:06
+* @LastEditDate          : 2025-07-16 00:14:37
 * @FilePath              : docs-web/src/components/UserInfo.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -13,7 +13,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useSessionStore } from 'src/stores/SessionStore.js'
+import { useSessionStore } from 'src/stores/SessionStore'
 
 const { userInfo } = storeToRefs(useSessionStore())
 </script>

@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 11:51:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-05-12 17:58:22
+* @LastEditDate          : 2025-07-15 23:31:10
 * @FilePath              : docs-web/src/components/FileUpload.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
+import axios from 'axios'
 import { Notify } from 'quasar'
-import { axios } from 'src/boot/axios'
 import { ref } from 'vue'
 
 const filesToBeUpload = ref(null)

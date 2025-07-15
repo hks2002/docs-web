@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 17:19:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-04-21 13:35:43
+* @LastEditDate          : 2025-07-16 00:14:31
 * @FilePath              : docs-web/src/components/PathBreadcrumbs.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -25,8 +25,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import { getFolders } from 'src/assets/file.js'
-import { useSessionStore } from 'src/stores/SessionStore.js'
+import { getFolders } from 'src/assets/file'
+import { useSessionStore } from 'src/stores/SessionStore'
 
 const { currentPath } = storeToRefs(useSessionStore())
 const folders = computed(() => {

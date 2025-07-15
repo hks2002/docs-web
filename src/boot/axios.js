@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 00:30:45                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-05-08 14:39:35                               *
+ * @LastEditDate          : 2025-07-16 01:00:06                               *
  * @FilePath              : docs-web/src/boot/axios.js                        *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -81,5 +81,3 @@ axios.interceptors.response.use(
     /** ❗❗❗ Don't forget using catch() on each axios request to deal with error */
   },
 )
-
-export { axios }

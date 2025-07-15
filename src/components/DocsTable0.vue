@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-06-20 13:05:08
+* @LastEditDate          : 2025-07-16 00:16:36
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -77,11 +77,11 @@
 </template>
 
 <script setup>
+import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import { axios } from 'src/boot/axios'
 import { onMounted, ref, watch } from 'vue'
 
-import { getDocIcon, isFolder, renderFileSize } from 'src/assets/file.js'
+import { getDocIcon, isFolder, renderFileSize } from 'src/assets/file'
 import { useSessionStore } from 'src/stores/SessionStore'
 
 const showLoading = ref(false)

@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-21 00:58:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-04-21 01:34:09
+* @LastEditDate          : 2025-07-15 23:31:25
 * @FilePath              : docs-web/src/components/LogOut.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -13,7 +13,7 @@
   </q-btn>
 </template>
 <script setup>
-import { axios } from 'src/boot/axios'
+import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 const $router = useRouter()

@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-04 23:32:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-05-23 18:30:17
+* @LastEditDate          : 2025-07-15 23:45:10
 * @FilePath              : docs-web/src/components/SelectLanguage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -21,7 +21,7 @@
     option-value="value"
   >
     <template #selected-item="{ opt }">
-      <q-item dense class="q-pa-none">
+      <q-item dense class="q-pa-none q-pl-md">
         <q-item-section avatar>
           <q-img no-spinner :src="'imgs/' + opt.value + '.png'" />
         </q-item-section>
@@ -32,7 +32,7 @@
     </template>
 
     <template #option="scope">
-      <q-item v-bind="scope.itemProps" dense class="q-pa-none">
+      <q-item v-bind="scope.itemProps" dense class="q-pa-none q-pl-md">
         <q-item-section avatar>
           <q-img no-spinner :src="'imgs/' + scope.opt.value + '.png'" />
         </q-item-section>
