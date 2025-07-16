@@ -2,16 +2,16 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 00:07:12                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-04-21 10:45:44                               *
+ * @LastEditDate          : 2025-07-16 20:31:40                               *
  * @FilePath              : docs-web/src/boot/i18n.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
-import { defineBoot } from '#q-app/wrappers'
 import { storeToRefs } from 'pinia'
 import { Quasar } from 'quasar'
 import { watch } from 'vue'
 import { createI18n } from 'vue-i18n'
+
+import { defineBoot } from '#q-app/wrappers'
 
 import { useLocalStore } from 'src/stores/LocalStore'
 

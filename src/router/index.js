@@ -6,8 +6,8 @@
  * @FilePath              : docs-web/src/router/index.js                      *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
 import { defineRouter } from '#q-app/wrappers'
+
 import { Router } from 'src/boot/router.js'
 
 /**

@@ -31,10 +31,11 @@ import { storeToRefs } from 'pinia'
 import { Cookies } from 'quasar'
 import { onMounted, onUnmounted } from 'vue'
 
-import { Router } from 'src/boot/router'
 import DocsTable0 from 'src/components/DocsTable0.vue'
 import DocsTable1 from 'src/components/DocsTable1.vue'
 import DocsTable2 from 'src/components/DocsTable2.vue'
+
+import { Router } from 'src/boot/router'
 import { useSessionStore } from 'src/stores/SessionStore'
 
 let timer = null

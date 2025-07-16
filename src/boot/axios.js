@@ -6,7 +6,6 @@
  * @FilePath              : docs-web/src/boot/axios.js                        *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
 /**
  * Run Default setting, interceptor, and error handling for axios
  * Normal use axios as usual:

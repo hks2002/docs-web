@@ -13,6 +13,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+
 import { useSessionStore } from 'src/stores/SessionStore'
 
 const { userInfo } = storeToRefs(useSessionStore())

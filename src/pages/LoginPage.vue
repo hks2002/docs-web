@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 21:12:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-07-16 00:08:49
+* @LastEditDate          : 2025-07-16 20:38:34
 * @FilePath              : docs-web/src/pages/LoginPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -94,12 +94,12 @@ import { SessionStorage, useQuasar } from 'quasar'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { authToken, isEmail } from 'src/assets/auth.js'
-import { Router } from 'src/boot/router'
-import { useSessionStore } from 'src/stores/SessionStore'
-
 import LottiePlayer from 'src/components/LottiePlayer.vue'
 import SelectLanguage from 'src/components/SelectLanguage.vue'
+
+import { authToken, isEmail } from 'src/assets/auth'
+import { Router } from 'src/boot/router'
+import { useSessionStore } from 'src/stores/SessionStore'
 
 // common vars
 const $q = useQuasar()

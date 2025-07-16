@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2022-10-09 17:38:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-04-21 01:38:10
+* @LastEditDate          : 2025-07-16 20:33:38
 * @FilePath              : docs-web/src/components/LottiePlayer.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->

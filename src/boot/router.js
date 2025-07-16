@@ -2,19 +2,19 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-20 14:57:29                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-04-21 17:08:29                               *
+ * @LastEditDate          : 2025-07-16 20:32:34                               *
  * @FilePath              : docs-web/src/boot/router.js                       *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
-import routes from 'src/router/routes.js'
-import { useSessionStore } from 'src/stores/SessionStore.js'
 import {
   createMemoryHistory,
   createRouter,
   createWebHashHistory,
   createWebHistory,
 } from 'vue-router'
+
+import routes from 'src/router/routes.js'
+import { useSessionStore } from 'src/stores/SessionStore.js'
 
 /**
  * This file is moved from `src/router/index.js`

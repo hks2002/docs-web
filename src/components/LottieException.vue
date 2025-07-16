@@ -18,6 +18,7 @@
 
 <script setup>
 import LottiePlayerVue from 'src/components/LottiePlayer.vue'
+
 /* eslint-disable */
 const props = defineProps(['ErrorCode'])
 </script>
