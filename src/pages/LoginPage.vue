@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 21:12:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-07-16 20:38:34
+* @LastEditDate          : 2025-07-18 14:51:43
 * @FilePath              : docs-web/src/pages/LoginPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -90,7 +90,7 @@
 <script setup>
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import { SessionStorage, useQuasar } from 'quasar'
+import { Cookies, SessionStorage, useQuasar } from 'quasar'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -120,6 +120,9 @@ onMounted(() => {
 const cleanSession = () => {
   SessionStorage.remove('SessionStore')
   SessionStorage.remove('Authorization')
+  Object.keys(Cookies.getAll()).forEach((key) => {
+    Cookies.remove(key)
+  })
 }
 
 const checkEnterKey = (event) => {
