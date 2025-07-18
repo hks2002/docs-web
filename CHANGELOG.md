@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/hks2002/docs-web/compare/v1.0.0...v1.0.1) (2025-07-18)
+
+
+### Bug Fixes
+
+* 🐛clean cookie when login ([9e937f4](https://github.com/hks2002/docs-web/commit/9e937f40fccc0b75d525878dec2056d454668df4))
+
 ## 1.0.0 (2025-06-28)
 
 
