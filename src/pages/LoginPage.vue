@@ -49,7 +49,7 @@
               bottom-slots
               :label="$t('S.PASSWORD')"
               :type="isPwd ? 'password' : 'text'"
-              autocomplete="current-password"
+              autocomplete="off"
               @keydown="checkEnterKey($event)"
             >
               <template v-slot:prepend>

@@ -14,7 +14,11 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
+import { Router } from 'src/boot/router.js'
 import { useSessionStore } from 'src/stores/SessionStore'
 
 const { userInfo } = storeToRefs(useSessionStore())
+if (userInfo.value.length === 0) {
+  Router.push({ name: 'LoginPage' })
+}
 </script>

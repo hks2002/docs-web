@@ -26,45 +26,7 @@
 </template>
 
 <script setup>
-import axios from 'axios'
-import { storeToRefs } from 'pinia'
-import { Cookies } from 'quasar'
-import { onMounted, onUnmounted } from 'vue'
-
 import DocsTable0 from 'src/components/DocsTable0.vue'
 import DocsTable1 from 'src/components/DocsTable1.vue'
 import DocsTable2 from 'src/components/DocsTable2.vue'
-
-import { Router } from 'src/boot/router'
-import { useSessionStore } from 'src/stores/SessionStore'
-
-let timer = null
-
-const checkSession = () => {
-  const { userInfo } = storeToRefs(useSessionStore())
-  if (userInfo.value.length === 0) {
-    Cookies.remove('vertx-web.session')
-    Router.push({ name: 'LoginPage' })
-    return
-  }
-
-  axios
-    .get('/docs-api/check-session')
-    .then((response) => {
-      if (response.data.success) {
-        console.info(response.data.msg)
-      }
-    })
-    .catch(() => {})
-}
-
-onMounted(() => {
-  checkSession() // run once at start
-
-  timer = setInterval(checkSession, 1000 * 60 * 30) // must greater than backend session timeout
-})
-
-onUnmounted(() => {
-  clearInterval(timer)
-})
 </script>
