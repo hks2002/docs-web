@@ -2,25 +2,25 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 13:49:36                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-06-28 21:15:47                               *
+ * @LastEditDate          : 2025-08-13 10:59:53                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
-/**
- * Quasar App (v2) Configuration
- * @see https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file
- */
+import { readFileSync } from 'fs'
 
 import { defineConfig } from '#q-app/wrappers'
+
 import { compress } from '@mongodb-js/zstd'
-import { readFileSync } from 'fs'
 
 let pkgText = readFileSync('package.json')
 let pkg = JSON.parse(pkgText)
 let pkgVersion = pkg.version
 let pkgName = pkg.name
 
+/**
+ * Quasar App (v2) Configuration
+ * @see https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file
+ */
 export default defineConfig(() => {
   return {
     eslint: {
@@ -98,7 +98,11 @@ export default defineConfig(() => {
         minRatio: 0.8,
         deleteOriginalAssets: false,
       },
-      analyze: true,
+      // analyze: true, waiting issue fix https://github.com/quasarframework/quasar/issues/17990
+      analyze: {
+        analyzerMode: 'static',
+        reportFilename: 'report.html',
+      },
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
