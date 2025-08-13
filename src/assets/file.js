@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-05 19:02:47                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-05-23 19:30:49                               *
+ * @LastEditDate          : 2025-08-13 10:05:36                               *
  * @FilePath              : docs-web/src/assets/file.js                       *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -52,7 +52,7 @@ const getDocIcon = (fileName) => {
 
   switch (docType) {
     case 'PDF':
-      return 'img:imgs/pdf.svg'
+      return 'img:/docs-web/imgs/pdf.svg'
     case 'BMP':
     case 'TIF':
     case 'TIFF':
@@ -60,19 +60,19 @@ const getDocIcon = (fileName) => {
     case 'JPEG':
     case 'PNG':
     case 'SVG':
-      return 'img:imgs/image.svg'
+      return 'img:/docs-web/imgs/image.svg'
     case 'ZIP':
     case 'RAR':
     case '7Z':
-      return 'img:imgs/zip.svg'
+      return 'img:/docs-web/imgs/zip.svg'
     case 'DOC':
     case 'DOCX':
-      return 'img:imgs/word.svg'
+      return 'img:/docs-web/imgs/word.svg'
     case 'XLS':
     case 'XLSX':
-      return 'img:imgs/excel.svg'
+      return 'img:/docs-web/imgs/excel.svg'
     default:
-      return 'img:imgs/file.svg'
+      return 'img:/docs-web/imgs/file.svg'
   }
 }
 

@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-07-16 20:18:26
+* @LastEditDate          : 2025-08-13 10:04:40
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -62,7 +62,9 @@
     <template v-slot:body-cell-name="props">
       <q-td :props="props">
         <q-icon
-          :name="props.row.isDirectory ? 'img:imgs/folder.svg' : getDocIcon(props.row.name)"
+          :name="
+            props.row.isDirectory ? 'img:/docs-web/imgs/folder.svg' : getDocIcon(props.row.name)
+          "
           size="xs"
         ></q-icon>
         {{ props.row.name }}
