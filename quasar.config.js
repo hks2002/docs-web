@@ -7,10 +7,9 @@
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
 import { readFileSync } from 'fs'
+import { ZstdCodec } from 'zstd-codec'
 
 import { defineConfig } from '#q-app/wrappers'
-
-import { compress } from '@mongodb-js/zstd'
 
 let pkgText = readFileSync('package.json')
 let pkg = JSON.parse(pkgText)
@@ -82,13 +81,16 @@ export default defineConfig(() => {
         test: /\.(js|css|html|json|ttf|svg|png|woff)$/,
         filename: '[path][base].zst',
         algorithm: function (input, options, callback) {
-          compress(input, options.level ?? 3) // default level is 3
-            .then((result) => {
-              return callback(null, result)
-            })
-            .catch((err) => {
-              return callback(err)
-            })
+          ZstdCodec.run(zstd => {
+            try {
+              const simple = new zstd.Simple()
+              const level = options.level ?? 3
+              const result = simple.compress(input, level)
+              callback(null, result)
+            } catch (err) {
+              callback(err)
+            }
+          })
         },
         // change the default compression options
         compressionOptions: {
