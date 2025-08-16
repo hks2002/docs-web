@@ -81,7 +81,7 @@ export default defineConfig(() => {
         test: /\.(js|css|html|json|ttf|svg|png|woff)$/,
         filename: '[path][base].zst',
         algorithm: function (input, options, callback) {
-          ZstdCodec.run(zstd => {
+          ZstdCodec.run((zstd) => {
             try {
               const simple = new zstd.Simple()
               const level = options.level ?? 3
@@ -100,10 +100,11 @@ export default defineConfig(() => {
         minRatio: 0.8,
         deleteOriginalAssets: false,
       },
-      // analyze: true, waiting issue fix https://github.com/quasarframework/quasar/issues/17990
       analyze: {
         analyzerMode: 'static',
         reportFilename: 'report.html',
+        openAnalyzer: true,
+        generateStatsFile: true,
       },
 
       // Options below are automatically set depending on the env, set them if you want to override
