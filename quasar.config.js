@@ -114,13 +114,12 @@ export default defineConfig(() => {
       // "chain" is a webpack-chain object https://github.com/sorrycc/webpack-chain
       chainWebpack(chain) {
         chain.optimization.splitChunks({
-          chunks: 'async',
+          chunks: 'all', // initial, async, all
           minSize: 20480, // low for bad network
-          minRemainingSize: 0,
-          minChunks: 1,
+          minRemainingSize: 5120,
           maxAsyncRequests: 30,
           maxInitialRequests: 30,
-          enforceSizeThreshold: 40960,
+          enforceSizeThreshold: 51200,
           cacheGroups: {
             defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
