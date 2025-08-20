@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.1](https://github.com/hks2002/docs-web/compare/v1.0.0...v1.0.1) (2025-08-17)
+
+
+### Bug Fixes
+
+* 🐛clean cookie when login ([9e937f4](https://github.com/hks2002/docs-web/commit/9e937f40fccc0b75d525878dec2056d454668df4))
+* 🐛fix tree map not show after build ([8be33a9](https://github.com/hks2002/docs-web/commit/8be33a965a21716140e8b50536b3b10156433adb))
+
+
+### Performance Improvements
+
+* 🚀using lottie_light ([5381c7a](https://github.com/hks2002/docs-web/commit/5381c7a9ffe2fef8c599d5006569bd6914cce559))
+
 ## 1.0.0 (2025-06-28)
 
 
