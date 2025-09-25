@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/hks2002/docs-web/compare/v1.0.1...v1.1.0) (2025-09-25)
+
+
+### Features
+
+* ✨user access log ([133e62d](https://github.com/hks2002/docs-web/commit/133e62d30506f3eab5a2190245f27e716ee76c20))
+
 ## [1.0.1](https://github.com/hks2002/docs-web/compare/v1.0.0...v1.0.1) (2025-08-17)
 
 
