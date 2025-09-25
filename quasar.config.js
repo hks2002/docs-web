@@ -1,8 +1,8 @@
 /******************************************************************************
  * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-04-04 13:49:36                               *
+ * @CreatedDate           : 2025-08-17 09:53:17                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-08-13 10:59:53                               *
+ * @LastEditDate          : 2025-08-17 09:53:17                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/

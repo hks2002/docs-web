@@ -1,22 +1,24 @@
 {
   "F": {
     "FILE_NAME": "File Name",
+    "LAST_ACCESS_TIME": "Last Access Time",
     "LAST_MODIFIED_DATE": "Last Modified Date",
+    "LOCATION": "Location",
     "SIZE": "Size"
   },
   "S": {
     "APP_NAME": "Docs",
     "BP_CODE": "Customer/Vendor Code",
-    "CONTACT_ADMIN": "Contact admin",
     "CONFIRM": "Confirm",
+    "CONTACT_ADMIN": "Contact admin",
     "DEVELOPED_BY": "Developed by Dedienne China",
     "DOCS_IN{LOCATION}": "Documents In {LOCATION}",
     "DOC_ACCESS_LOG": "Document Access Logs",
     "DOC_SEARCH": "Doc Search",
     "DOC_SHARE_LOG": "Document Share Logs",
     "DOC_UPLOAD_LOG": "Document Upload Logs",
-    "DO_YOU_KNOWN": "Do you known",
     "DO_NOT_FORGET_BP_NAME": "Input Code for Customer or Vendor Could clear Watermark",
+    "DO_YOU_KNOWN": "Do you known",
     "EXIT": "Exit",
     "Home": "Home",
     "LOAD_PROFILE": "Load profile...",
@@ -31,7 +33,8 @@
     "POWERED_BY": "Powered by Quasar and Vertx",
     "SERVER_ERROR": "Server error",
     "TIPS": "Tips",
-    "UPLOAD_FILES": "Upload Files"
+    "UPLOAD_FILES": "Upload Files",
+    "YOUR_ACCESS_HISTOYRY": "Your accessed docs history"
   },
   "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD_WITH_SPACE} ",
   "{VAR_HOLD}": "{VAR_HOLD}"

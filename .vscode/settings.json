@@ -11,8 +11,9 @@
     "vue"
   ],
   "editor.codeActionsOnSave": [
-   "source.organizeImports",
-    "source.fixAll.eslint" ,
+    "merbleueaviation.auto-header-plus",
+    "source.fixAll.eslint",
+    "source.organizeImports"
   ],
   "[json][jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -30,5 +31,6 @@
     "src/i18n"
   ],
   "i18n-ally.sortKeys": true,
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "extensions.ignoreRecommendations": true
 }

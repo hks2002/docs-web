@@ -1,7 +1,9 @@
 {
   "F": {
     "FILE_NAME": "文件名",
+    "LAST_ACCESS_TIME": "最后访问时间",
     "LAST_MODIFIED_DATE": "最后修改日期",
+    "LOCATION": "路径",
     "SIZE": "大小"
   },
   "S": {
@@ -15,8 +17,8 @@
     "DOC_SEARCH": "文档搜索",
     "DOC_SHARE_LOG": "文档分享记录",
     "DOC_UPLOAD_LOG": "文档上传记录",
-    "DO_YOU_KNOWN": "你是否知道？",
     "DO_NOT_FORGET_BP_NAME": "输入客户或供应商代码可淡化水印",
+    "DO_YOU_KNOWN": "你是否知道？",
     "EXIT": "退出",
     "Home": "首页",
     "LOAD_PROFILE": "加载配置...",
@@ -31,7 +33,8 @@
     "POWERED_BY": "使用Quasar和Vertx构建",
     "SERVER_ERROR": "服务器错误",
     "TIPS": "提示",
-    "UPLOAD_FILES": "上传文档"
+    "UPLOAD_FILES": "上传文档",
+    "YOUR_ACCESS_HISTOYRY": "你访问的文档"
   },
   "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD} ",
   "{VAR_HOLD}": "{VAR_HOLD}"
