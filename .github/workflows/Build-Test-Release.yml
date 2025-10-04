@@ -37,7 +37,7 @@ jobs:
         if: runner.os != 'Linux'
 
       # Release please create a pull request to the 'master' branch
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         with:
           release-type: node
           #package-name: release-please-action
