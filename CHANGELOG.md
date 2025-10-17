@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/hks2002/docs-web/compare/v1.1.0...v1.2.0) (2025-10-17)
+
+
+### Features
+
+* ✨reduce the lang pack ([f2ab7db](https://github.com/hks2002/docs-web/commit/f2ab7db5e69deb75f780f17bc64ae18ab974f441))
+
 ## [1.1.0](https://github.com/hks2002/docs-web/compare/v1.0.1...v1.1.0) (2025-09-25)
 
 
