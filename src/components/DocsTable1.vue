@@ -21,7 +21,7 @@
         label: $t('F.LAST_MODIFIED_DATE'),
         field: 'doc_modified_at',
         format: (val) => {
-          return new Date(val).toLocaleString()
+          return date.formatDate(val, 'YYYY-MM-DD HH:mm:ss')
         },
       },
     ]"
@@ -38,6 +38,7 @@
 
 <script setup>
 import axios from 'axios'
+import { date } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref, watch } from 'vue'
 

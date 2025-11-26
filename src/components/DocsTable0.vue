@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-08-13 10:04:40
+* @LastEditDate          : 2025-11-26 20:12:54
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -29,7 +29,7 @@
         label: $t('F.LAST_MODIFIED_DATE'),
         field: 'lastModified',
         format: (val) => {
-          return new Date(val).toLocaleString()
+          return date.formatDate(val, 'YYYY-MM-DD HH:mm:ss')
         },
       },
     ]"
@@ -81,6 +81,7 @@
 <script setup>
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
+import { date } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
 import { getDocIcon, isFolder, renderFileSize } from 'src/assets/file'

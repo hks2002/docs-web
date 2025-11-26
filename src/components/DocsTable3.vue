@@ -2,11 +2,10 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-09-25 13:32:46
+* @LastEditDate          : 2025-11-26 20:12:41
 * @FilePath              : docs-web/src/components/DocsTable3.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
 
 <template>
   <q-table
@@ -22,7 +21,7 @@
         label: $t('F.LAST_ACCESS_TIME'),
         field: 'access_time',
         format: (val) => {
-          return new Date(val).toLocaleString()
+          return date.formatDate(val, 'YYYY-MM-DD HH:mm:ss')
         },
       },
     ]"
@@ -50,6 +49,7 @@
 
 <script setup>
 import axios from 'axios'
+import { date } from 'quasar'
 import { onMounted, ref } from 'vue'
 
 import { getDocIcon } from 'src/assets/file'
