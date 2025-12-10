@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/hks2002/docs-web/compare/v1.2.0...v1.3.0) (2025-12-10)
+
+
+### Features
+
+* ✨release-please-action v4 ([fdb11d8](https://github.com/hks2002/docs-web/commit/fdb11d8de7b920c631ee50bf34ef06f2ef36be60))
+
 ## [1.2.0](https://github.com/hks2002/docs-web/compare/v1.1.0...v1.2.0) (2025-10-17)
 
 
