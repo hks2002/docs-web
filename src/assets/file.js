@@ -2,10 +2,11 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-05 19:02:47                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-08-17 09:50:03                               *
+ * @LastEditDate          : 2025-12-27 02:46:34                               *
  * @FilePath              : docs-web/src/assets/file.js                       *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
+
 
 // get file name from path
 const getFile = (path) => {
@@ -76,8 +77,8 @@ const getDocIcon = (fileName) => {
   }
 }
 
-const renderFileSize = (sizeInBytes) => {
-  if (sizeInBytes === -1) {
+const renderFileSize = (sizeInBytes, isDirectory) => {
+  if (sizeInBytes === -1 || isDirectory) {
     return '---'
   }
   const units = ['B', 'KB', 'MB', 'GB', 'TB']

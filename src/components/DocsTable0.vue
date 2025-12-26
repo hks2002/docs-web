@@ -2,10 +2,11 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-11-26 20:12:54
+* @LastEditDate          : 2025-12-27 02:43:30
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
+
 
 <template>
   <q-table
@@ -22,7 +23,6 @@
         align: 'right',
         label: $t('F.SIZE'),
         field: 'size',
-        format: (val) => renderFileSize(val),
       },
       {
         name: 'lastModified',
@@ -70,6 +70,11 @@
         {{ props.row.name }}
       </q-td>
     </template>
+    <template v-slot:body-cell-size="props">
+      <q-td :props="props">
+        {{ renderFileSize(props.row.size, props.row.isDirectory) }}
+      </q-td>
+    </template>
     <template v-slot:loading>
       <q-inner-loading :showing="showLoading">
         <q-spinner-ios size="50px" color="primary" />
@@ -93,8 +98,9 @@ const docs = ref([])
 const { searchPN, currentPath } = storeToRefs(useSessionStore())
 
 const doSearch = (val) => {
+  searchPN.value = val
+
   if (val && val.length >= 3) {
-    searchPN.value = val
     showLoading.value = true
     axios
       .get('/docs-api/searchDocs' + '?PN=' + val)
@@ -105,6 +111,8 @@ const doSearch = (val) => {
       .finally(() => {
         showLoading.value = false
       })
+  } else {
+    doList()
   }
 }
 
