@@ -2,15 +2,16 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-11-26 20:12:41
+* @LastEditDate          : 2025-12-27 02:24:17
 * @FilePath              : docs-web/src/components/DocsTable3.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
 
+
 <template>
   <q-table
     dense
-    :title="$t('S.YOUR_ACCESS_HISTOYRY')"
+    :title="$t('S.YOUR_ACCESS_HISTORY')"
     row-key="name"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="docs"

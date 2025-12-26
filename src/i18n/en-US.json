@@ -34,7 +34,7 @@
     "SERVER_ERROR": "Server error",
     "TIPS": "Tips",
     "UPLOAD_FILES": "Upload Files",
-    "YOUR_ACCESS_HISTOYRY": "Your accessed docs history"
+    "YOUR_ACCESS_HISTORY": "Your accessed docs history"
   },
   "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD_WITH_SPACE} ",
   "{VAR_HOLD}": "{VAR_HOLD}"

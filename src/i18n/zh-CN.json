@@ -34,7 +34,7 @@
     "SERVER_ERROR": "服务器错误",
     "TIPS": "提示",
     "UPLOAD_FILES": "上传文档",
-    "YOUR_ACCESS_HISTOYRY": "你访问的文档"
+    "YOUR_ACCESS_HISTORY": "你访问的文档"
   },
   "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD} ",
   "{VAR_HOLD}": "{VAR_HOLD}"
