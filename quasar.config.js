@@ -2,10 +2,11 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-08-17 09:53:17                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-08-17 09:53:17                               *
+ * @LastEditDate          : 2025-12-27 03:10:54                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
+
 import { readFileSync } from 'fs'
 import { ZstdCodec } from 'zstd-codec'
 
@@ -100,6 +101,8 @@ export default defineConfig(() => {
         minRatio: 0.8,
         deleteOriginalAssets: false,
       },
+      minify: true, // minify for production
+      treeshake: true, //  remove unnecessary import
       analyze: {
         analyzerMode: 'static',
         reportFilename: 'report.html',
@@ -116,19 +119,27 @@ export default defineConfig(() => {
         chain.optimization.splitChunks({
           chunks: 'all', // initial, async, all
           minSize: 20480, // low for bad network
+          maxSize: 512000, // high for bad network
           minRemainingSize: 5120,
           maxAsyncRequests: 30,
-          maxInitialRequests: 30,
-          enforceSizeThreshold: 51200,
           cacheGroups: {
-            defaultVendors: {
+            vue: {
+              test: /[\\/]node_modules[\\/](vue|vue-router|pinia|quasar)[\\/]/,
+              name: 'vendor-vue',
+              chunks: 'all',
+              priority: 20,
+              reuseExistingChunk: true,
+            },
+            vendor: {
               test: /[\\/]node_modules[\\/]/,
-              priority: -10,
+              name: 'vendor-common',
+              chunks: 'all',
+              priority: 10,
               reuseExistingChunk: true,
             },
             default: {
               minChunks: 2,
-              priority: -20,
+              priority: -0,
               reuseExistingChunk: true,
             },
           },
