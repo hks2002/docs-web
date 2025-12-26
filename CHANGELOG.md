@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/hks2002/docs-web/compare/v1.3.0...v1.3.1) (2025-12-26)
+
+
+### Bug Fixes
+
+* 🐛 clear input bug fix and folder size disable ([f0105ae](https://github.com/hks2002/docs-web/commit/f0105aee87b5d46e45b5426c37578dd3832bf06f))
+* 🐛spell error fix ([8fd1e08](https://github.com/hks2002/docs-web/commit/8fd1e08952bde6bc4d0512715561b9cfb22a749e))
+
 ## [1.3.0](https://github.com/hks2002/docs-web/compare/v1.2.0...v1.3.0) (2025-12-10)
 
 
