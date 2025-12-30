@@ -2,11 +2,10 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-08-17 09:53:17                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-12-27 03:10:54                               *
+ * @LastEditDate          : 2025-12-30 15:56:30                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
 import { readFileSync } from 'fs'
 import { ZstdCodec } from 'zstd-codec'
 
@@ -124,15 +123,22 @@ export default defineConfig(() => {
           maxAsyncRequests: 30,
           cacheGroups: {
             vue: {
-              test: /[\\/]node_modules[\\/](vue|vue-router|pinia|quasar)[\\/]/,
-              name: 'vendor-vue',
+              test: /[\\/]node_modules[\\/](vue|vue-router|pinia)[\\/]/,
+              name: 'vue',
+              chunks: 'all',
+              priority: 30,
+              reuseExistingChunk: true,
+            },
+            quasar: {
+              test: /[\\/]node_modules[\\/](quasar)[\\/]/,
+              name: 'quasar',
               chunks: 'all',
               priority: 20,
               reuseExistingChunk: true,
             },
             vendor: {
               test: /[\\/]node_modules[\\/]/,
-              name: 'vendor-common',
+              name: 'common',
               chunks: 'all',
               priority: 10,
               reuseExistingChunk: true,
