@@ -2,10 +2,11 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-08-17 09:53:17                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-12-30 15:56:30                               *
+ * @LastEditDate          : 2026-01-07 18:27:22                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
+
 import { readFileSync } from 'fs'
 import { ZstdCodec } from 'zstd-codec'
 
@@ -174,6 +175,7 @@ export default defineConfig(() => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#devserver
     devServer: {
+      hot: true,
       open: true, // opens browser window automatically
       proxy: [
         {

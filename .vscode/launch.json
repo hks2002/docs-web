@@ -8,14 +8,14 @@
             "type": "node-terminal",
             "name": "Run Script: dev",
             "request": "launch",
-            "command": "yarn quasar dev",
+            "command": "pnpm quasar dev",
             "cwd": "${workspaceFolder}"
         },
         {
             "type": "node-terminal",
             "name": "Run Script: build",
             "request": "launch",
-            "command": "yarn quasar build",
+            "command": "pnpm quasar build",
             "cwd": "${workspaceFolder}"
         }
     ]
