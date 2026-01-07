@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 23:26:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-09-25 11:13:36
+* @LastEditDate          : 2026-01-07 18:33:09
 * @FilePath              : docs-web/src/pages/IndexPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -17,11 +17,10 @@
 
       <div class="col-4">
         <DocsTable1 />
-        <DocsTable2 />
       </div>
 
       <div class="col-4">
-        <DocsTable3 />
+        <DocsTable2 />
       </div>
     </div>
   </q-page>
@@ -31,5 +30,4 @@
 import DocsTable0 from 'src/components/DocsTable0.vue'
 import DocsTable1 from 'src/components/DocsTable1.vue'
 import DocsTable2 from 'src/components/DocsTable2.vue'
-import DocsTable3 from 'src/components/DocsTable3.vue'
 </script>

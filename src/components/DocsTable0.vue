@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-12-27 02:43:30
+* @LastEditDate          : 2026-01-06 17:58:13
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -72,7 +72,7 @@
     </template>
     <template v-slot:body-cell-size="props">
       <q-td :props="props">
-        {{ renderFileSize(props.row.size, props.row.isDirectory) }}
+        {{ renderFileSize(props.row.size) }}
       </q-td>
     </template>
     <template v-slot:loading>

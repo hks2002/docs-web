@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-05 19:02:47                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-12-27 02:46:34                               *
+ * @LastEditDate          : 2026-01-06 17:57:56                               *
  * @FilePath              : docs-web/src/assets/file.js                       *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -37,10 +37,12 @@ const getFolders = (path) => {
 }
 
 const isFolder = (path) => {
+  if (!path) return false
   return path.endsWith('/') ? true : getFile(path).includes('.') ? false : true
 }
 
 const getDocIcon = (fileName) => {
+  if (!fileName) return ''
   if (isFolder(fileName)) {
     return 'img:imgs/folder.svg'
   }
@@ -77,8 +79,8 @@ const getDocIcon = (fileName) => {
   }
 }
 
-const renderFileSize = (sizeInBytes, isDirectory) => {
-  if (sizeInBytes === -1 || isDirectory) {
+const renderFileSize = (sizeInBytes) => {
+  if (sizeInBytes === -1 || sizeInBytes === 0) {
     return '---'
   }
   const units = ['B', 'KB', 'MB', 'GB', 'TB']

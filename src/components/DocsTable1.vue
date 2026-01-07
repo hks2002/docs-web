@@ -2,10 +2,11 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-07-15 23:30:44
+* @LastEditDate          : 2026-01-07 20:26:49
 * @FilePath              : docs-web/src/components/DocsTable1.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
+
 
 <template>
   <q-table
@@ -15,19 +16,39 @@
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="docs"
     :columns="[
-      { name: 'name', label: $t('F.FILE_NAME'), align: 'left', field: 'file_name' },
+      { name: 'name', label: $t('F.FILE_NAME'), align: 'left' },
+      { name: 'size', label: $t('F.SIZE'), align: 'right' },
       {
         name: 'lastModified',
         label: $t('F.LAST_MODIFIED_DATE'),
-        field: 'doc_modified_at',
-        format: (val) => {
-          return date.formatDate(val, 'YYYY-MM-DD HH:mm:ss')
-        },
+        align: 'right',
       },
     ]"
     :loading="showLoading"
     :rows-per-page-options="[0]"
   >
+    <template v-slot:body="props">
+      <q-tr :props="props">
+        <q-td>
+          <q-icon :name="getDocIcon(props.row.name)" size="xs"></q-icon>
+          {{ props.row.name }}
+        </q-td>
+        <q-td class="text-right">
+          {{ renderFileSize(props.row.size) }}
+        </q-td>
+        <q-td class="text-right">
+          {{ date.formatDate(props.row.lastModified, 'YYYY-MM-DD HH:mm:ss') }}
+        </q-td>
+      </q-tr>
+      <q-tr v-show="props.row.fileId > 1 && props.row.format === 'pdf'" :props="props">
+        <q-td class="text-center" colspan="3">
+          <q-img
+            :src="`http://dms-server:4040/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
+            style="max-width: 400px; height: 200px"
+          />
+        </q-td>
+      </q-tr>
+    </template>
     <template v-slot:loading>
       <q-inner-loading :showing="showLoading">
         <q-spinner-ios size="50px" color="primary" />
@@ -38,10 +59,11 @@
 
 <script setup>
 import axios from 'axios'
-import { date } from 'quasar'
 import { storeToRefs } from 'pinia'
+import { date } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
+import { getDocIcon, renderFileSize } from 'src/assets/file'
 import { useSessionStore } from 'src/stores/SessionStore'
 
 const showLoading = ref(false)
