@@ -2,7 +2,7 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : Invalid Date                                      *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-05-23 19:14:29                               *
+ * @LastEditDate          : 2026-01-07 13:43:55                               *
  * @FilePath              : docs-web/src/stores/SessionStore.js               *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
@@ -12,6 +12,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 export const useSessionStore = defineStore('SessionStore', {
   state: () => ({
     userInfo: '',
+    userName: '',
     homePath: '/docs-api/docs',
     currentPath: '/docs-api/docs',
     searchPN: '',
