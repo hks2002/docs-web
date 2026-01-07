@@ -2,10 +2,11 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-04-04 00:30:45                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-07-16 01:00:06                               *
+ * @LastEditDate          : 2026-01-07 11:04:15                               *
  * @FilePath              : docs-web/src/boot/axios.js                        *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
+
 /**
  * Run Default setting, interceptor, and error handling for axios
  * Normal use axios as usual:
@@ -21,8 +22,12 @@ import { Router } from 'src/boot/router'
 axios.defaults.withCredentials = true // Allow send cookies
 axios.defaults.timeout = 60000
 
+let controller = new AbortController()
+
 // This is the default configuration called in axios.js
 axios.interceptors.request.use((config) => {
+  config.signal = controller.signal // using AbortController signal
+
   if (!config.headers['Content-Type']) {
     config.headers['Content-Type'] = 'application/json;charset=utf-8'
   }
@@ -49,6 +54,8 @@ axios.interceptors.response.use(
 
     switch (error.response.status) {
       case 401:
+        controller.abort()
+        controller = new AbortController() // reset controller
         Router.push({ path: '/Login' })
         break
       case 403:
