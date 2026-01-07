@@ -2,11 +2,10 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-07 20:26:49
+* @LastEditDate          : 2026-01-07 23:11:14
 * @FilePath              : docs-web/src/components/DocsTable1.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
 
 <template>
   <q-table
@@ -43,7 +42,7 @@
       <q-tr v-show="props.row.fileId > 1 && props.row.format === 'pdf'" :props="props">
         <q-td class="text-center" colspan="3">
           <q-img
-            :src="`http://dms-server:4040/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
+            :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
             style="max-width: 400px; height: 200px"
           />
         </q-td>

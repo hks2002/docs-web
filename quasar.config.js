@@ -2,11 +2,10 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2025-08-17 09:53:17                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2026-01-07 18:27:22                               *
+ * @LastEditDate          : 2026-01-07 23:12:50                               *
  * @FilePath              : docs-web/quasar.config.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
 import { readFileSync } from 'fs'
 import { ZstdCodec } from 'zstd-codec'
 
@@ -181,6 +180,10 @@ export default defineConfig(() => {
         {
           context: ['/docs-api'],
           target: 'http://127.0.0.1:8090',
+        },
+        {
+          context: ['/audros/custom/thumbnails/dmsDS'],
+          target: 'http://192.168.0.247:4000',
         },
       ],
     },
