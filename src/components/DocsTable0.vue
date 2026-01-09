@@ -2,11 +2,10 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-06 17:58:13
+* @LastEditDate          : 2026-01-09 19:33:04
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
 
 <template>
   <q-table
@@ -54,7 +53,9 @@
           @update:model-value="doSearch"
         >
           <template v-slot:append>
-            <q-icon name="search" />
+            <q-icon name="refresh" class="cursor-pointer" @click="doSearch(searchPN)">
+              <q-tooltip>{{ $t('S.REFRESH') }}</q-tooltip>
+            </q-icon>
           </template>
         </q-input>
       </div>

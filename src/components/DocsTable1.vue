@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-07 23:11:14
+* @LastEditDate          : 2026-01-09 20:24:18
 * @FilePath              : docs-web/src/components/DocsTable1.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -42,8 +42,16 @@
       <q-tr v-show="props.row.fileId > 1 && props.row.format === 'pdf'" :props="props">
         <q-td class="text-center" colspan="3">
           <q-img
+            v-show="!props.row.zoom"
             :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
             style="max-width: 400px; height: 200px"
+            @click="props.row.zoom = !props.row.zoom"
+          />
+          <q-img
+            v-show="props.row.zoom"
+            class="zoom-layer"
+            @click="props.row.zoom = !props.row.zoom"
+            :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
           />
         </q-td>
       </q-tr>
@@ -77,6 +85,10 @@ const doSearch = (val) => {
       .get('/docs-api/searchDocsFromTLSNEW' + '?PN=' + val)
       .then((res) => {
         docs.value = res.data
+        // 每个文档加一个zoom属性
+        docs.value.forEach((doc) => {
+          doc.zoom = false
+        })
       })
       .catch(() => {})
       .finally(() => {
