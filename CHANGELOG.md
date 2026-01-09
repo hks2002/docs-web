@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/hks2002/docs-web/compare/v1.3.1...v1.4.0) (2026-01-09)
+
+
+### Features
+
+* ✨ doc thumbs enhance ([8ca06c7](https://github.com/hks2002/docs-web/commit/8ca06c72226d741eedbc88637236e920e76b05b7))
+* ✨add websocket for message for server ([8ea85b8](https://github.com/hks2002/docs-web/commit/8ea85b893b0d25f7b6ee99a8c27fbc2068988d18))
+* ✨axios request abort support ([6696ed8](https://github.com/hks2002/docs-web/commit/6696ed8216109ff0d8ba5757ba85017fc50583a2))
+* ✨move access log to drawer ([a4c9b2c](https://github.com/hks2002/docs-web/commit/a4c9b2c373fbff74520f3c853c2363ce75b73461))
+* ✨new table for tls doc ([d2ebef5](https://github.com/hks2002/docs-web/commit/d2ebef5c187d4274f792e6af17f48a2d94405418))
+* ✨rename access log vue file ([247ff4d](https://github.com/hks2002/docs-web/commit/247ff4de0d747a3b16bb254440be815f2f33d804))
+* ✨update quasar to 2.18.6 ([9cec05a](https://github.com/hks2002/docs-web/commit/9cec05a8e6933a7805eba8c252c017da6c855379))
+
+
+### Bug Fixes
+
+* 🐛fix img url bugs ([4e91b57](https://github.com/hks2002/docs-web/commit/4e91b5746cff6413a5dabbe62ead4cc435aed1f2))
+
 ## [1.3.1](https://github.com/hks2002/docs-web/compare/v1.3.0...v1.3.1) (2025-12-26)
 
 
