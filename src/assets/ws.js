@@ -2,11 +2,10 @@
  * @Author                : Robert Huang<56649783@qq.com>                     *
  * @CreatedDate           : 2026-01-06 17:44:10                               *
  * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2026-01-07 22:01:52                               *
+ * @LastEditDate          : 2026-01-09 18:51:34                               *
  * @FilePath              : docs-web/src/assets/ws.js                         *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
  *****************************************************************************/
-
 import { Notify } from 'quasar'
 
 import { t } from 'src/boot/i18n'
@@ -47,9 +46,8 @@ const createWS = (userName, userInfo) => {
           break
         case 'DMS_DOWNLOAD_SKIP':
           Notify.create({
-            type: 'success',
+            type: 'info',
             message: t('S.DOWNLOAD_SKIPPED', { DOC: data['name'] }),
-            timeout: 500,
           })
           break
         case 'DMS_DOWNLOAD_SUCCESS':
