@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/hks2002/docs-web/compare/v1.4.0...v1.5.0) (2026-05-26)
+
+
+### Features
+
+* ✨add use permission manage  and database clean and duplicate file clean ([86f0b2c](https://github.com/hks2002/docs-web/commit/86f0b2cc9ca1dfbc34a89d4da5a7c1a483e41f85))
+
 ## [1.4.0](https://github.com/hks2002/docs-web/compare/v1.3.1...v1.4.0) (2026-01-21)
 
 
