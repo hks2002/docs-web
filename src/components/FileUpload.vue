@@ -2,13 +2,14 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 11:51:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2025-07-15 23:31:10
+* @LastEditDate          : 2026-05-25 13:28:49
 * @FilePath              : docs-web/src/components/FileUpload.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
 
 <template>
   <q-file
+    v-if="DOCS_WRITE"
     v-model="filesToBeUpload"
     :label="$t('S.UPLOAD_FILES')"
     dense
@@ -28,8 +29,13 @@
 
 <script setup>
 import axios from 'axios'
+import { storeToRefs } from 'pinia'
 import { Notify } from 'quasar'
 import { ref } from 'vue'
+
+import { useSessionStore } from 'src/stores/SessionStore'
+
+const { DOCS_WRITE } = storeToRefs(useSessionStore())
 
 const filesToBeUpload = ref(null)
 const doUploadFiles = (files) => {

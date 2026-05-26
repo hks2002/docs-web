@@ -1,14 +1,26 @@
 {
   "F": {
+    "ADMIN": "Admin",
+    "EMAIL": "Email",
     "FILE_NAME": "File Name",
+    "FIRST_NAME": "First Name",
+    "ID": "Id",
     "LAST_ACCESS_TIME": "Last Access Time",
     "LAST_MODIFIED_DATE": "Last Modified Date",
-    "LOCATION": "Location",
-    "SIZE": "Size"
+    "LAST_NAME": "Last Name",
+    "LOGIN_NAME": "Login Name",
+    "READ": "Read",
+    "SIZE": "Size",
+    "WRITE": "Write"
   },
   "S": {
     "APP_NAME": "Docs",
     "BP_CODE": "Customer/Vendor Code",
+    "CLEAN_DUPLICATE_DOC": "Clean Duplicate docs",
+    "CLEAN_FINISHED": "Clean Done",
+    "CLEAN_NON_EXISTS_DOC": "Clean non-exists docs",
+    "CLEAN_PROCESSING": "Clean Processing",
+    "CLEAN_STARTED": "Clean Started",
     "CONFIRM": "Confirm",
     "CONTACT_ADMIN": "Contact admin",
     "DEVELOPED_BY": "Developed by Dedienne China",
@@ -18,13 +30,14 @@
     "DOC_SHARE_LOG": "Document Share Logs",
     "DOC_UPLOAD_LOG": "Document Upload Logs",
     "DOWNLOAD_ERROR": "{DOC} download error",
-    "DOWNLOAD_SKIPPED": "{DOC} download skipped",
     "DOWNLOAD_FINISHED": "{DOC} download finished",
+    "DOWNLOAD_SKIPPED": "{DOC} download skipped",
     "DOWNLOAD_STARTED": "{DOC} download started",
     "DO_NOT_FORGET_BP_NAME": "Input Code for Customer or Vendor Could clear Watermark",
     "DO_YOU_KNOWN": "Do you known",
     "EXIT": "Exit",
     "Home": "Home",
+    "LIST_LAST": "Last {COUNT} records",
     "LOAD_PROFILE": "Load profile...",
     "LOGIN": "Login",
     "LOGIN_NAME_NOTE": "Your PC Account",
@@ -37,9 +50,10 @@
     "POWERED_BY": "Powered by Quasar and Vertx",
     "REFRESH": "Refresh",
     "SERVER_ERROR": "Server error",
+    "SETTINGS": "Settings",
     "TIPS": "Tips",
     "UPLOAD_FILES": "Upload Files",
-    "YOUR_ACCESS_HISTORY": "Your accessed docs history"
+    "YOUR_ACCESS_HISTORY": "Accessed history"
   },
   "{VAR_HOLD_WITH_SPACE}": " {VAR_HOLD_WITH_SPACE} ",
   "{VAR_HOLD}": "{VAR_HOLD}"

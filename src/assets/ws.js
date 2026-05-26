@@ -2,11 +2,11 @@
  * @Author                : Robert Huang<56649783@qq.com>                      *
  * @CreatedDate           : 2026-01-21 15:14:21                                *
  * @LastEditors           : Robert Huang<56649783@qq.com>                      *
- * @LastEditDate          : 2026-01-21 16:02:43                                *
+ * @LastEditDate          : 2026-05-25 15:50:27                                *
  * @FilePath              : docs-web/src/assets/ws.js                          *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
  ******************************************************************************/
-import { Notify } from 'quasar'
+import { Dialog, Notify, QSpinnerGears } from 'quasar'
 
 import { t } from 'src/boot/i18n'
 
@@ -21,6 +21,7 @@ class WebSocketManager {
     this.reconnectDelay = 3000 // 3 seconds between reconnect attempts
     this.heartbeatInterval = null
     this.heartbeatDelay = 30000 // 30 seconds heartbeat
+    this.dialog = null
     this.createConnection()
   }
 
@@ -113,6 +114,44 @@ class WebSocketManager {
             message: t('S.DOWNLOAD_ERROR', { DOC: data['name'] }),
           })
           break
+        case 'CLEAN_NON_EXISTS_START':
+        case 'CLEAN_DUPLICATE_START':
+          console.log(data)
+          this.dialog = Dialog.create({
+            title: t('S.CLEAN_STARTED'),
+            message: `${Math.floor((100 * data['processed']) / data['total'])}%`,
+            progress: {
+              spinner: QSpinnerGears,
+              color: 'amber',
+            },
+            persistent: true, // we want the user to not be able to close it
+            ok: false, // we want the user to not be able to close it
+          })
+          break
+        case 'CLEAN_NON_EXISTS_PROCESS':
+        case 'CLEAN_DUPLICATE_PROCESS':
+          console.log(data)
+          this.dialog.update({
+            title: t('S.CLEAN_PROCESSING'),
+            message: `${Math.floor((100 * data['processed']) / data['total'])}%`,
+            progress: {
+              spinner: QSpinnerGears,
+              color: 'amber',
+            },
+            persistent: true, // we want the user to not be able to close it
+            ok: false, // we want the user to not be able to close it
+          })
+          break
+        case 'CLEAN_NON_EXISTS_END':
+        case 'CLEAN_DUPLICATE_END':
+          console.log(data)
+          this.dialog.update({
+            title: t('S.CLEAN_FINISHED'),
+            progress: false,
+            ok: true,
+          })
+          break
+        default:
       }
     } catch (e) {
       console.error('WebSocket message handling error:', e)

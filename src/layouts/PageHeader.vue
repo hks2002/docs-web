@@ -2,11 +2,10 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 22:51:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-07 18:30:38
+* @LastEditDate          : 2026-05-26 09:18:57
 * @FilePath              : docs-web/src/layouts/PageHeader.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
 
 <template>
   <q-header elevated style="height: 40px">
@@ -24,8 +23,6 @@
       <UserInfo />
       <RightDrawerBtn />
       <LogOut />
-
-      <!-- <q-btn dense flat round icon="menu" @click="toggleRightDrawer"></q-btn> -->
     </q-toolbar>
   </q-header>
 </template>

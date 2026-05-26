@@ -1,12 +1,11 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : Invalid Date                                      *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2026-01-07 13:43:55                               *
- * @FilePath              : docs-web/src/stores/SessionStore.js               *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
-
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : NaN-NaN-NaN NaN:NaN:NaN                            *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-05-25 13:34:00                                *
+ * @FilePath              : docs-web/src/stores/SessionStore.js                *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useSessionStore = defineStore('SessionStore', {
@@ -18,6 +17,9 @@ export const useSessionStore = defineStore('SessionStore', {
     searchPN: '',
     BPCode: '',
     BPName: '',
+    DOCS_WRITE: false,
+    DOCS_READ: false,
+    ADMIN: false,
   }),
   persist: {
     enabled: true,

@@ -2,11 +2,10 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 21:12:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-07 13:45:21
+* @LastEditDate          : 2026-05-25 13:36:07
 * @FilePath              : docs-web/src/pages/LoginPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
 
 <template>
   <q-page class="flex flex-center" style="height: 100%">
@@ -151,9 +150,12 @@ const doLogin = async () => {
     .post('/docs-api/login', {}, { headers: { Authorization: auth } })
     .then((res) => {
       if (res.data.success) {
-        const { userInfo, userName } = storeToRefs(useSessionStore())
+        const { userInfo, userName, DOCS_WRITE, DOCS_READ, ADMIN } = storeToRefs(useSessionStore())
         userInfo.value = res.data.msg['full_name'] + ' <' + res.data.msg['email'] + '>'
         userName.value = res.data.msg['login_name']
+        DOCS_WRITE.value = res.data.msg['DOCS_WRITE']
+        DOCS_READ.value = res.data.msg['DOCS_READ']
+        ADMIN.value = res.data.msg['ADMIN']
 
         SessionStorage.set('Authorization', auth)
         Router.push({ name: 'IndexPage' })
