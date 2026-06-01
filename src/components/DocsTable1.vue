@@ -70,8 +70,8 @@ import { storeToRefs } from 'pinia'
 import { date } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
-import { getDocIcon, renderFileSize } from 'src/assets/file'
 import { useSessionStore } from 'src/stores/SessionStore'
+import { getDocIcon, renderFileSize } from 'src/utils/file'
 
 const showLoading = ref(false)
 const docs = ref([])

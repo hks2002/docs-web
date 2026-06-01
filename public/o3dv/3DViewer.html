@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="../favicon.ico">
+
+    <title>Online 3D Viewer</title>
+
+    <!-- meta start -->
+    <!-- meta end -->
+
+    <!-- website start -->
+    <link rel="stylesheet" type="text/css" href="o3dv.css">
+    <script type="text/javascript" src="o3dv.js"></script>
+    <!-- website end -->
+    <!-- plugins start -->
+    <!-- plugins end -->
+
+    <script type="text/javascript">        
+    OV.StartWebsite ();
+    </script>
+</head>
+<body>
+    <input type="file" id="open_file" style="display:none;" multiple></input>
+    <div class="header" id="header">
+        <div class="title" style="display: none;">
+            <div class="title_left">
+                <a href="index.html">
+                    <svg class="logo_image"></svg>
+                </a>
+            </div>
+            <div class="title_right" id="header_buttons"></div>
+            <div class="main_file_name only_full_width" id="main_file_name"></div>
+        </div>
+        <div class="toolbar" id="toolbar"></div>
+    </div>
+    <div class="main" id="main">
+        <div class="main_left_container only_full_width" id="main_left_container">
+            <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+            <div class="main_splitter" id="main_navigator_splitter"></div>
+        </div>
+        <div class="main_viewer" id="main_viewer"></div>
+        <div class="main_right_container only_full_width" id="main_right_container">
+            <div class="main_splitter" id="main_sidebar_splitter"></div>
+            <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+        </div>
+    </div>
+    <div class="intro ov_thin_scrollbar" id="intro">
+        <div class="intro_content" id="intro_content">
+            <div class="intro_logo">
+                <div class="intro_dragdrop_text" id="intro_dragdrop_text"></div>
+            </div>
+            <div class="intro_formats">
+                <div class="intro_formats_title" id="intro_formats_title" style="display: none;"> </div>
+                <div class="intro_formats_title" > Supported File Formats 支持的文件格式</div>
+                <div class="intro_file_formats">
+                    <a >3dm</a>
+                    <a >3ds</a>
+                    <a >3mf</a>
+                    <a >amf</a>
+                    <a >bim</a>
+                    <a >brep</a>
+                    <a >dae</a>
+                    <a >fbx</a>
+                    <a >fcstd</a>
+                    <a >gltf</a>
+                    <a >ifc</a>
+                    <a >iges</a>
+                    <a >step</a>
+                    <a >stl</a>
+                    <a >obj</a>
+                    <a >off</a>
+                    <a >ply</a>
+                    <a >wrl</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

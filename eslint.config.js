@@ -1,14 +1,13 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-04-19 17:00:21                               *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-07-16 20:23:11                               *
- * @FilePath              : docs-web/eslint.config.js                         *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
-
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : 2026-05-27 12:47:56                                *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-05-27 18:26:59                                *
+ * @FilePath              : docs-web/eslint.config.js                          *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 import js from '@eslint/js'
-import pluginQuasar from '@quasar/app-webpack/eslint'
+import pluginQuasar from '@quasar/app-vite/eslint'
 import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import pluginVue from 'eslint-plugin-vue'
 import globals from 'globals'
@@ -23,7 +22,7 @@ export default [
      *
      * ESLint requires "ignores" key to be the only one in this object
      */
-    ignores: ['*.json'],
+    ignores: ['*.json', 'node_modules/**', '.quasar/**', 'dist/**'],
   },
 
   ...pluginQuasar.configs.recommended(),
@@ -60,11 +59,8 @@ export default [
       },
     },
 
-    // add your custom rules here
     rules: {
       'prefer-promise-reject-errors': 'off',
-
-      // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     },
   },

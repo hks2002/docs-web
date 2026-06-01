@@ -7,7 +7,6 @@
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
 
-
 <template>
   <span class="q-mx-none"> <q-icon name="person" size="32px" />{{ userInfo }} </span>
 </template>
@@ -15,9 +14,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
-import { createWS } from 'src/assets/ws'
 import { Router } from 'src/boot/router.js'
 import { useSessionStore } from 'src/stores/SessionStore'
+import { createWS } from 'src/ws/ws'
 
 const { userInfo, userName } = storeToRefs(useSessionStore())
 if (userInfo.value.length === 0) {

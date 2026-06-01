@@ -52,24 +52,20 @@ const Router = createRouter({
   history: createHistory(process.env.VUE_ROUTER_BASE),
 })
 
-Router.beforeEach(async (to, from, next) => {
-  if (to.path === from.path) {
-    next()
-    return false
-  }
-
+Router.beforeEach(async (to /*from*/) => {
   let { userInfo } = useSessionStore()
 
-  // always allow goto Login/WaitInput/Exception page
+  // always allow goto Login/WaitInput/Exception/3DViewer page
   if (to.path === '/Login' || to.path === '/WaitInput' || to.path.startsWith('/Exception')) {
-    next()
+    return true
   }
   // no userInfo, goto login page
   else if (!userInfo) {
-    next({ path: '/Login' })
+    //return { path: '/Login' }
+    return true
   } else {
     // default, alway pass it
-    next()
+    return true
   }
 })
 

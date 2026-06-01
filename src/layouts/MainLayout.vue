@@ -6,8 +6,6 @@
 * @FilePath              : docs-web/src/layouts/MainLayout.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
-
-
 <template>
   <q-layout view="hHh Lpr lFf">
     <PageHeader />

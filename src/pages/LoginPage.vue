@@ -97,9 +97,9 @@ import { useI18n } from 'vue-i18n'
 import LottiePlayer from 'src/components/LottiePlayer.vue'
 import SelectLanguage from 'src/components/SelectLanguage.vue'
 
-import { authToken, isEmail } from 'src/assets/auth'
 import { Router } from 'src/boot/router'
 import { useSessionStore } from 'src/stores/SessionStore'
+import { authToken, isEmail } from 'src/utils/auth'
 
 // common vars
 const $q = useQuasar()

@@ -11,54 +11,69 @@
     "format": "prettier --write \"**/*.{js,vue,scss,html,md}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
-    "build": "pnpm run lint && quasar build",
+    "build": "yarn run lint && quasar build",
     "postinstall": "quasar prepare"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.17",
     "axios": "^1.8.4",
-    "core-js": "^3.41.0",
     "lottie-web": "^5.12.2",
+    "online-3d-viewer": "^0.18.0",
     "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.2.0",
     "quasar": "^2.18.6",
     "vue": "^3.5.13",
     "vue-i18n": "^11.1.3",
-    "vue-router": "^4.5.0",
-    "zstd-codec": "^0.1.5"
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@mongodb-js/zstd": "^2.0.1",
-    "@quasar/app-webpack": "^4.3.1",
-    "@quasar/cli": "^2.5.0",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@eslint/js": "^9.39.4",
+    "@quasar/app-vite": "^2.6.0",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.27",
     "cspell": "^9.6.0",
-    "eslint-webpack-plugin": "^5.0.1",
-    "eslint": "^9.25.0",
-    "eslint-plugin-vue": "^10.0.0",
-    "globals": "^16.0.0",
-    "postcss": "^8.5.6",
-    "prettier": "^3.5.3",
-    "simple-zstd": "^1.4.2",
-    "vue-eslint-parser": "^10.1.3",
-    "webpack": "^5.76.2"
+    "eslint": "^9.39.4",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.6.0",
+    "postcss": "^8.5.8",
+    "prettier": "^3.8.1",
+    "vite-plugin-bundler": "^0.1.2",
+    "vite-plugin-checker": "^0.12.0",
+    "vite-plugin-compression2": "^2.5.3",
+    "rollup-plugin-visualizer": "7.0.1",
+    "vue-eslint-parser": "^10.4.0"
   },
-  "browserslist": [
-    "last 10 Chrome versions",
-    "last 10 Firefox versions",
-    "last 4 Edge versions",
-    "last 7 Safari versions",
-    "last 8 Android versions",
-    "last 8 ChromeAndroid versions",
-    "last 8 FirefoxAndroid versions",
-    "last 10 iOS versions",
-    "last 5 Opera versions"
-  ],
+  "devDependenciesGroup": {
+    "misc": {
+      "globals": "provide global variables for eslint, for example, browser, node, es2021, etc"
+    },
+    "eslint": {
+      "eslint": "JavaScript code quality tool for finding and fixing problems in code",
+      "@eslint/js": "provide JavaScript configuration rules and default settings for ESLint",
+      "vue-eslint-parser": "provide Vue Single File Component (SFC) parsing support for ESLint",
+      "eslint-plugin-vue": "ESLint plugin for Vue.js with rules for checking common Vue errors"
+    },
+    "prettier": {
+      "prettier": "code formatter tool to ensure consistent code style across the project",
+      "@vue/eslint-config-prettier": "integrate Prettier configuration into ESLint to avoid rule conflicts"
+    },
+    "css": {
+      "autoprefixer": "automatically add vendor prefixes to CSS properties for cross-browser compatibility",
+      "postcss": "CSS transformation tool for processing and optimizing CSS with plugins"
+    },
+    "cspell": {
+      "cspell": "spell checker tool for detecting spelling errors in code and documentation"
+    },
+    "quasar": {
+      "@quasar/app-vite": "Quasar framework CLI tool with Vite build system for cross-platform application development"
+    },
+    "vite": {
+      "vite-plugin-checker": "run TypeScript, ESLint and other static code checking tools in worker threads for fast feedback",
+      "vite-plugin-compression2": "Vite build optimization plugin that automatically generates gzip and brotli compressed files to reduce file size"
+    }
+  },
   "engines": {
-    "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
+    "node": "^28 || ^26 || ^24 || ^22.12",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }

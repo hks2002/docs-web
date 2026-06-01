@@ -10,6 +10,7 @@
 <template>
   <q-drawer
     side="right"
+    v-if="drawerRight"
     v-model="drawerRight"
     bordered
     :width="1000"

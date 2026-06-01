@@ -25,8 +25,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import { getFolders } from 'src/assets/file'
 import { useSessionStore } from 'src/stores/SessionStore'
+import { getFolders } from 'src/utils/file'
 
 const { currentPath } = storeToRefs(useSessionStore())
 const folders = computed(() => {

@@ -5,6 +5,7 @@ fontawesome
 Navi
 persistedstate
 pinia
+serviceworker
 themify
 TLSNEW
 TLSOLD

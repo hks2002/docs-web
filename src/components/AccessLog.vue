@@ -12,7 +12,7 @@
     dense
     row-key="name"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
-    :rows="docs"
+    :rows="groupedDocs"
     :columns="[
       {
         name: 'accessTime',
@@ -28,23 +28,28 @@
     :loading="showLoading"
     :rows-per-page-options="[10, 50, 100, 200, 500, 1000]"
     v-model:pagination="pagination"
-    @row-click="
-      (evt, row, index) => {
-        goTo(row.url)
-      }
-    "
   >
     <template v-slot:top>
       <div class="text-h6">{{ $t('S.YOUR_ACCESS_HISTORY') }}</div>
       <q-icon name="refresh" size="md" @click="doList" color="primary" class="cursor-pointer" />
-      <q-space />
-      <div class="text-h6">{{ $t('S.LIST_LAST', { COUNT: listCount }) }}</div>
+      <div class="text-h6 q-ml-md">{{ $t('S.LIST_LAST', { COUNT: listCount }) }}</div>
     </template>
-    <template v-slot:body-cell-name="props">
-      <q-td :props="props">
-        <q-icon :name="getDocIcon(props.row.file_name)" size="xs"></q-icon>
-        {{ props.row.file_name }}
-      </q-td>
+    <template v-slot:body="props">
+      <q-tr v-if="props.row.isGroup" :props="props" class="bg-grey-3">
+        <q-td colspan="2" class="text-bold text-primary">
+          <q-icon name="folder" size="sm" class="q-mr-sm" />
+          {{ props.row.groupName }} ({{ props.row.count }})
+        </q-td>
+      </q-tr>
+      <q-tr v-else :props="props" class="cursor-pointer" @click="goTo(props.row.url)">
+        <q-td>
+          {{ date.formatDate(props.row.access_time, 'YYYY-MM-DD HH:mm:ss') }}
+        </q-td>
+        <q-td>
+          <q-icon :name="getDocIcon(props.row.file_name)" size="xs" class="q-mr-xs"></q-icon>
+          {{ props.row.file_name }}
+        </q-td>
+      </q-tr>
     </template>
     <template v-slot:loading>
       <q-inner-loading :showing="showLoading">
@@ -57,10 +62,13 @@
 <script setup>
 import axios from 'axios'
 import { date } from 'quasar'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { getDocIcon } from 'src/assets/file'
+import { getDocIcon, isSupported3DFormat } from 'src/utils/file'
+import { getTimePeriod } from 'src/utils/timePeriods'
 
+const { t } = useI18n()
 const showLoading = ref(false)
 const docs = ref([])
 const pagination = ref({
@@ -68,6 +76,39 @@ const pagination = ref({
   rowsPerPage: 50,
 })
 const listCount = ref(500)
+
+const periodOrder = [
+  t('S.TODAY'),
+  t('S.YESTERDAY'),
+  t('S.DAY_BEFORE_YESTERDAY'),
+  t('S.THIS_WEEK'),
+  t('S.LAST_WEEK'),
+  t('S.LAST_2_WEEKS'),
+  t('S.LAST_MONTH'),
+  t('S.OLDER'),
+]
+
+const groupedDocs = computed(() => {
+  const grouped = new Map()
+  docs.value.forEach((doc) => {
+    const period = getTimePeriod(doc.access_time)
+    if (!grouped.has(period)) {
+      grouped.set(period, [])
+    }
+    grouped.get(period).push(doc)
+  })
+
+  const result = []
+  periodOrder.forEach((periodName) => {
+    const items = grouped.get(periodName)
+    if (items?.length) {
+      result.push({ isGroup: true, groupName: periodName, count: items.length, name: periodName })
+      result.push(...items)
+    }
+  })
+
+  return result
+})
 
 const doList = () => {
   showLoading.value = true
@@ -83,7 +124,11 @@ const doList = () => {
 }
 
 const goTo = (url) => {
-  window.open(url)
+  if (isSupported3DFormat(url)) {
+    window.open('/docs-web/o3dv/3DViewer.html#model=' + url)
+  } else {
+    window.open(url)
+  }
 }
 
 onMounted(() => {

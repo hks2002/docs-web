@@ -90,8 +90,8 @@ import { storeToRefs } from 'pinia'
 import { date } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
-import { getDocIcon, isFolder, renderFileSize } from 'src/assets/file'
 import { useSessionStore } from 'src/stores/SessionStore'
+import { getDocIcon, isFolder, isSupported3DFormat, renderFileSize } from 'src/utils/file'
 
 const showLoading = ref(false)
 const docs = ref([])
@@ -134,6 +134,8 @@ const goTo = (url) => {
   if (isFolder(url)) {
     currentPath.value = url
     doList()
+  } else if (isSupported3DFormat(url)) {
+    window.open('/docs-web/o3dv/3DViewer.html#model=' + url)
   } else {
     window.open(url)
   }

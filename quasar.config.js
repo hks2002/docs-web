@@ -1,47 +1,30 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-08-17 09:53:17                               *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2026-01-09 19:51:37                               *
- * @FilePath              : docs-web/quasar.config.js                         *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
-import { readFileSync } from 'fs'
-import { ZstdCodec } from 'zstd-codec'
-
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : 2026-05-27 11:51:30                                *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-05-27 19:14:53                                *
+ * @FilePath              : docs-web/quasar.config.js                          *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 import { defineConfig } from '#q-app/wrappers'
+import { visualizer } from 'rollup-plugin-visualizer'
+import { compression, defineAlgorithm } from 'vite-plugin-compression2'
+import pkg from './package.json'
 
-let pkgText = readFileSync('package.json')
-let pkg = JSON.parse(pkgText)
-let pkgVersion = pkg.version
-let pkgName = pkg.name
+// Configuration for your app
+// https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
-/**
- * Quasar App (v2) Configuration
- * @see https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file
- */
-export default defineConfig(() => {
+export default defineConfig((/* ctx */) => {
   return {
-    eslint: {
-      fix: true,
-      // include: [],
-      // exclude: [],
-      // cache: false,
-      // rawEsbuildEslintOptions: {},
-      // rawWebpackEslintPluginOptions: {},
-      warnings: true,
-      errors: true,
-    },
-
-    // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
+    // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
+    // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: ['quasar', 'i18n', 'router', 'axios'],
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#css
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -53,142 +36,78 @@ export default defineConfig(() => {
       // 'themify',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+
       // 'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
     ],
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#build
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
-      publicPath: '/' + pkgName + '/',
+      target: {
+        browser: 'baseline-widely-available',
+        node: 'node22',
+      },
+
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      // vueRouterBase,
+      // vueDevtools,
+      // vueOptionsAPI: false,
 
-      // webpackTranspile: false,
+      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // Add dependencies for transpiling with Babel (Array of string/regex)
-      // (from node_modules, which are by default not transpiled).
-      // Applies only if "webpackTranspile" is set to true.
-      // webpackTranspileDependencies: [],
+      publicPath: '/docs-web/',
+      analyze: true,
+      // env: {},
+      //rawDefine:{},
+      // ignorePublicFolder: true,
+      minify: true,
+      // polyfillModulePreload: true,
+      // distDir
 
-      esbuildTarget: {
-        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
-        node: 'node20',
-      },
-
-      // rtl: true, // https://quasar.dev/options/rtl-support
-      preloadChunks: true,
-      showProgress: true,
-      gzip: {
-        test: /\.(js|css|html|json|ttf|svg|png|woff)$/,
-        filename: '[path][base].zst',
-        algorithm: function (input, options, callback) {
-          ZstdCodec.run((zstd) => {
-            try {
-              const simple = new zstd.Simple()
-              const level = options.level ?? 3
-              const result = simple.compress(input, level)
-              callback(null, result)
-            } catch (err) {
-              callback(err)
-            }
-          })
-        },
-        // change the default compression options
-        compressionOptions: {
-          level: 4,
-        },
-        threshold: 1024,
-        minRatio: 0.8,
-        deleteOriginalAssets: false,
-      },
-      minify: true, // minify for production
-      treeshake: true, //  remove unnecessary import
-      analyze: {
-        analyzerMode: 'static',
-        reportFilename: 'report.html',
-        openAnalyzer: true,
-        generateStatsFile: true,
-      },
-
-      // Options below are automatically set depending on the env, set them if you want to override
-      // extractCSS: false,
-
-      // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
-      // "chain" is a webpack-chain object https://github.com/sorrycc/webpack-chain
-      chainWebpack(chain) {
-        chain.optimization.splitChunks({
-          chunks: 'all', // initial, async, all
-          minSize: 20480, // low for bad network
-          maxSize: 512000, // high for bad network
-          minRemainingSize: 5120,
-          maxAsyncRequests: 30,
-          cacheGroups: {
-            vue: {
-              test: /[\\/]node_modules[\\/](vue|vue-router|pinia)[\\/]/,
-              name: 'vue',
-              chunks: 'all',
-              priority: 30,
-              reuseExistingChunk: true,
-            },
-            quasar: {
-              test: /[\\/]node_modules[\\/](quasar)[\\/]/,
-              name: 'quasar',
-              chunks: 'all',
-              priority: 20,
-              reuseExistingChunk: true,
-            },
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'common',
-              chunks: 'all',
-              priority: 10,
-              reuseExistingChunk: true,
-            },
-            default: {
-              minChunks: 2,
-              priority: -0,
-              reuseExistingChunk: true,
-            },
+      extendViteConf(viteConf) {
+        console.log(viteConf.resolve.alias)
+        viteConf.plugins.push({
+          name: 'after-build-hook',
+          closeBundle: async () => {
+            console.log('\u001b[35m App version ' + pkg.version + '\u001b[0m')
           },
         })
+        viteConf.plugins.push(
+          visualizer({
+            open: true,
+            filename: 'dist/spa/stats.html',
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        )
       },
 
-      afterBuild() {
-        console.log('\u001b[35m Update package to ' + pkgVersion + '\u001b[0m')
-      },
-      uglifyOptions: {
-        compress: {
-          warnings: false,
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
+      // viteVuePluginOptions: {},
 
-      // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack(cfg) {
-        cfg.resolve.alias = {
-          ...cfg.resolve.alias, // This adds the existing alias
-        }
-        // console.debug(' webpack-aliases:', cfg.resolve.alias)
-      },
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#devserver
-    devServer: {
-      hot: true,
-      open: true, // opens browser window automatically
-      proxy: [
-        {
-          context: ['/docs-api'],
-          target: 'http://127.0.0.1:8090',
-        },
-        {
-          context: ['/audros'],
-          target: 'http://192.168.0.247:4040',
-        },
+      vitePlugins: [
+        compression({
+          algorithms: ['gzip', 'brotliCompress', defineAlgorithm('zstd', { level: 12 })],
+        }),
       ],
     },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#framework
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
+    devServer: {
+      // https: true,
+      open: true, // opens browser window automatically
+      proxy: {
+        '/docs-api': {
+          target: 'http://127.0.0.1:8090',
+          changeOrigin: true,
+        },
+        '/audros': {
+          target: 'http://192.168.0.247:4040',
+          changeOrigin: true,
+        },
+      },
+    },
+
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
     framework: {
       config: {},
 
@@ -207,15 +126,14 @@ export default defineConfig(() => {
     },
 
     // animations: 'all', // --- includes all animations
-    // https://quasar.dev/options/animations
+    // https://v2.quasar.dev/options/animations
     animations: [],
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#sourcefiles
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#sourcefiles
     // sourceFiles: {
     //   rootComponent: 'src/App.vue',
     //   router: 'src/router/index',
     //   store: 'src/store/index',
-    //   indexHtmlTemplate: 'index.html',
     //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
     //   pwaServiceWorker: 'src-pwa/custom-service-worker',
     //   pwaManifestFile: 'src-pwa/manifest.json',
@@ -224,7 +142,7 @@ export default defineConfig(() => {
     //   bexManifestFile: 'src-bex/manifest.json
     // },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
+    // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
     ssr: {
       prodPort: 3000, // The default port that the production server should use
       // (gets superseded if process.env.PORT is specified at runtime)
@@ -248,7 +166,7 @@ export default defineConfig(() => {
       // pwaExtendInjectManifestOptions (cfg) {}
     },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
+    // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
     pwa: {
       workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       // swFilename: 'sw.js',
@@ -261,17 +179,17 @@ export default defineConfig(() => {
       // extendInjectManifestOptions (cfg) {}
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-cordova-apps/configuring-cordova
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
     capacitor: {
       hideSplashscreen: true,
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
     electron: {
       // extendElectronMainConf (esbuildConf) {},
       // extendElectronPreloadConf (esbuildConf) {},
@@ -298,13 +216,13 @@ export default defineConfig(() => {
       },
 
       builder: {
-        // https://www.electron.build/configuration/configuration
+        // https://www.electron.build/configuration
 
         appId: 'docs-web',
       },
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-browser-extensions/configuring-bex
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex
     bex: {
       // extendBexScriptsConf (esbuildConf) {},
       // extendBexManifestJson (json) {},
