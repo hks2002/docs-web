@@ -15,10 +15,10 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
-import { useLocalStore } from 'src/stores/LocalStore'
-import { useSessionStore } from 'src/stores/SessionStore'
+import { useLocaleStore } from '@/stores/LocaleStore'
+import { useSessionStore } from '@/stores/SessionStore'
 
-const { drawerRight } = storeToRefs(useLocalStore())
+const { drawerRight } = storeToRefs(useLocaleStore())
 
 const { ADMIN } = storeToRefs(useSessionStore())
 </script>

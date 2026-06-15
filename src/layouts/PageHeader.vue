@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 22:51:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-05-26 09:18:57
+* @LastEditDate          : 2026-06-13 23:02:39
 * @FilePath              : docs-web/src/layouts/PageHeader.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -28,12 +28,12 @@
 </template>
 
 <script setup>
-import BusinessPartnerInfo from 'src/components/BusinessPartnerInfo.vue'
-import FileUpload from 'src/components/FileUpload.vue'
-import LogOut from 'src/components/LogOut.vue'
-import NaviHome from 'src/components/NaviHome.vue'
-import PathBreadcrumbs from 'src/components/PathBreadcrumbs.vue'
-import RightDrawerBtn from 'src/components/RightDrawerBtn.vue'
-import SelectLanguage from 'src/components/SelectLanguage.vue'
-import UserInfo from 'src/components/UserInfo.vue'
+import BusinessPartnerInfo from '@/components/BusinessPartnerInfo.vue'
+import FileUpload from '@/components/FileUpload.vue'
+import LogOut from '@/components/LogOut.vue'
+import NaviHome from '@/components/NaviHome.vue'
+import PathBreadcrumbs from '@/components/PathBreadcrumbs.vue'
+import RightDrawerBtn from '@/components/RightDrawerBtn.vue'
+import SelectLanguage from '@/components/SelectLanguage.vue'
+import UserInfo from '@/components/UserInfo.vue'
 </script>

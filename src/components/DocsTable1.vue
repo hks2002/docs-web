@@ -10,10 +10,12 @@
 <template>
   <q-table
     dense
-    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'TLS(NEW)' })"
     row-key="name"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="docs"
+    :loading="showLoading"
+    :rows-per-page-options="[0]"
+    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'TLS(NEW)' })"
     :columns="[
       { name: 'name', label: $t('F.FILE_NAME'), align: 'left' },
       { name: 'size', label: $t('F.SIZE'), align: 'right' },
@@ -23,35 +25,33 @@
         align: 'right',
       },
     ]"
-    :loading="showLoading"
-    :rows-per-page-options="[0]"
   >
     <template v-slot:body="props">
       <q-tr :props="props">
         <q-td>
-          <q-icon :name="getDocIcon(props.row.name)" size="xs"></q-icon>
+          <q-icon size="xs" :name="getDocIcon(props.row.name)"></q-icon>
           {{ props.row.name }}
         </q-td>
         <q-td class="text-right">
-          {{ renderFileSize(props.row.size) }}
+          {{ humanStorageSize(props.row.size) }}
         </q-td>
         <q-td class="text-right">
           {{ date.formatDate(props.row.lastModified, 'YYYY-MM-DD HH:mm:ss') }}
         </q-td>
       </q-tr>
       <q-tr v-show="props.row.fileId > 1 && props.row.format === 'pdf'" :props="props">
-        <q-td class="text-center" colspan="3">
+        <q-td colspan="3" class="text-center">
           <q-img
             v-show="!props.row.zoom"
-            :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
             style="max-width: 400px; height: 200px"
+            :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
             @click="props.row.zoom = !props.row.zoom"
           />
           <q-img
             v-show="props.row.zoom"
             class="zoom-layer"
-            @click="props.row.zoom = !props.row.zoom"
             :src="`/audros/custom/thumbnails/dmsDS/${props.row.fileId - 1}.CAD.jpg`"
+            @click="props.row.zoom = !props.row.zoom"
           />
         </q-td>
       </q-tr>
@@ -67,16 +67,19 @@
 <script setup>
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import { date } from 'quasar'
+import { date, format } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
-import { useSessionStore } from 'src/stores/SessionStore'
-import { getDocIcon, renderFileSize } from 'src/utils/file'
+import { useSessionStore } from '@/stores/SessionStore'
+import { getDocIcon } from '@/utils/file'
+
+const $session = useSessionStore()
 
 const showLoading = ref(false)
 const docs = ref([])
 
-const { searchPN } = storeToRefs(useSessionStore())
+const { humanStorageSize } = format
+const { searchPN } = storeToRefs($session)
 
 const doSearch = (val) => {
   if (val && val.length >= 3) {

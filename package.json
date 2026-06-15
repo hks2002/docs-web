@@ -15,32 +15,34 @@
     "postinstall": "quasar prepare"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.17",
-    "axios": "^1.8.4",
-    "lottie-web": "^5.12.2",
+    "@quasar/extras": "^2.0.1",
+    "axios": "^1.17.0",
+    "lottie-web": "^5.13.0",
     "online-3d-viewer": "^0.18.0",
     "pinia": "^3.0.2",
-    "pinia-plugin-persistedstate": "^4.2.0",
-    "quasar": "^2.18.6",
-    "vue": "^3.5.13",
-    "vue-i18n": "^11.1.3",
-    "vue-router": "^4.5.0"
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "quasar": "^2.20.0",
+    "vue": "^3.5.38",
+    "vue-i18n": "^11.4.5",
+    "vue-router": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@quasar/app-vite": "^2.6.0",
+    "@quasar/app-vite": "^3.0.0-rc.2",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "autoprefixer": "^10.4.27",
-    "cspell": "^9.6.0",
+    "autoprefixer": "^10.5.0",
+    "cspell": "^10.0.1",
     "eslint": "^9.39.4",
-    "eslint-plugin-vue": "^10.8.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "eslint-plugin-vue": "^10.9.2",
     "globals": "^17.6.0",
-    "postcss": "^8.5.8",
-    "prettier": "^3.8.1",
-    "vite-plugin-bundler": "^0.1.2",
-    "vite-plugin-checker": "^0.12.0",
-    "vite-plugin-compression2": "^2.5.3",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.4",
     "rollup-plugin-visualizer": "7.0.1",
+    "vite": "^8.0.9",
+    "vite-plugin-checker": "^0.14.1",
+    "vite-plugin-compression2": "^2.5.3",
     "vue-eslint-parser": "^10.4.0"
   },
   "devDependenciesGroup": {
@@ -51,7 +53,9 @@
       "eslint": "JavaScript code quality tool for finding and fixing problems in code",
       "@eslint/js": "provide JavaScript configuration rules and default settings for ESLint",
       "vue-eslint-parser": "provide Vue Single File Component (SFC) parsing support for ESLint",
-      "eslint-plugin-vue": "ESLint plugin for Vue.js with rules for checking common Vue errors"
+      "eslint-plugin-vue": "ESLint plugin for Vue.js with rules for checking common Vue errors",
+      "eslint-plugin-import": "ESLint plugin for managing import/export syntax and module resolution",
+      "eslint-plugin-unused-imports": "ESLint plugin for detecting and removing unused imports in code"
     },
     "prettier": {
       "prettier": "code formatter tool to ensure consistent code style across the project",

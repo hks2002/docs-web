@@ -98,20 +98,6 @@ const getDocIcon = (fileName) => {
   }
 }
 
-const renderFileSize = (sizeInBytes) => {
-  if (sizeInBytes === -1 || sizeInBytes === 0) {
-    return '---'
-  }
-  const units = ['B', 'KB', 'MB', 'GB', 'TB']
-  let unitIndex = 0
-
-  while (sizeInBytes >= 1024 && unitIndex < units.length - 1) {
-    sizeInBytes /= 1024
-    unitIndex++
-  }
-
-  return `${sizeInBytes.toFixed(1)} ${units[unitIndex]}`
-}
 const supported3DFormats = [
   '3DM',
   '3DS',
@@ -144,12 +130,4 @@ const isSupported3DFormat = (fileName) => {
   return supported3DFormats.includes(docType)
 }
 
-export {
-  getDocIcon,
-  getFile,
-  getFolders,
-  isFolder,
-  isSupported3DFormat,
-  renderFileSize,
-  supported3DFormats,
-}
+export { getDocIcon, getFile, getFolders, isFolder, isSupported3DFormat, supported3DFormats }

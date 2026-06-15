@@ -9,15 +9,15 @@
 
 <template>
   <LottiePlayerVue
-    :animationLink="'json/' + ErrorCode + '.json'"
-    :height="400"
-    :width="400"
     class="flex fixed-center"
+    :width="400"
+    :height="400"
+    :animationLink="'json/' + ErrorCode + '.json'"
   />
 </template>
 
 <script setup>
-import LottiePlayerVue from 'src/components/LottiePlayer.vue'
+import LottiePlayerVue from '@/components/LottiePlayer.vue'
 
 /* eslint-disable */
 const props = defineProps(['ErrorCode'])

@@ -1,4 +1,4 @@
-import { t } from 'src/boot/i18n'
+import { t } from '@/composables/useI18n.js'
 
 const createDayRange = (daysOffset) => {
   const start = new Date()

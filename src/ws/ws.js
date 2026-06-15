@@ -8,7 +8,7 @@
  ******************************************************************************/
 import { Dialog, Notify, QSpinnerGears } from 'quasar'
 
-import { t } from 'src/boot/i18n'
+import { t } from '@/composables/useI18n.js'
 
 class WebSocketManager {
   constructor(userName, userInfo) {

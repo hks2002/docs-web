@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-05 23:26:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-05-25 11:03:45
+* @LastEditDate          : 2026-06-13 23:02:59
 * @FilePath              : docs-web/src/pages/IndexPage.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-import AccessLog from 'src/components/AccessLog.vue'
-import DocsTable0 from 'src/components/DocsTable0.vue'
-import DocsTable1 from 'src/components/DocsTable1.vue'
-import DocsTable2 from 'src/components/DocsTable2.vue'
+import AccessLog from '@/components/AccessLog.vue'
+import DocsTable0 from '@/components/DocsTable0.vue'
+import DocsTable1 from '@/components/DocsTable1.vue'
+import DocsTable2 from '@/components/DocsTable2.vue'
 </script>

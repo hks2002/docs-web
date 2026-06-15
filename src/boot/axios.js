@@ -1,12 +1,11 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-04-04 00:30:45                               *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2026-01-07 11:04:15                               *
- * @FilePath              : docs-web/src/boot/axios.js                        *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
-
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : 2025-04-04 00:30:45                                *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-06-15 11:13:19                                *
+ * @FilePath              : docs-web/src/boot/axios.js                         *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 /**
  * Run Default setting, interceptor, and error handling for axios
  * Normal use axios as usual:
@@ -15,8 +14,8 @@
 import axios from 'axios'
 import { Notify, SessionStorage } from 'quasar'
 
-import { t } from 'src/boot/i18n'
-import { Router } from 'src/boot/router'
+import { t } from '@/composables/useI18n'
+import { Router } from '@/router'
 
 // This is the default configuration called in axios.js
 axios.defaults.withCredentials = true // Allow send cookies

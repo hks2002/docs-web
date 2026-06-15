@@ -11,11 +11,11 @@
   <span class="q-gutter-sm">
     <q-breadcrumbs separator="/" class="text-orange" active-color="accent">
       <q-breadcrumbs-el
-        :label="folder.name"
-        icon="widgets"
-        @click="changeCurrentPath(folder.path)"
-        :key="folder.path"
         v-for="folder in folders"
+        :key="folder.path"
+        icon="widgets"
+        :label="folder.name"
+        @click="changeCurrentPath(folder.path)"
       >
       </q-breadcrumbs-el>
     </q-breadcrumbs>
@@ -25,8 +25,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import { useSessionStore } from 'src/stores/SessionStore'
-import { getFolders } from 'src/utils/file'
+import { useSessionStore } from '@/stores/SessionStore'
+import { getFolders } from '@/utils/file'
 
 const { currentPath } = storeToRefs(useSessionStore())
 const folders = computed(() => {

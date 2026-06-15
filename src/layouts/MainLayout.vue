@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import PageFooter from 'src/layouts/PageFooter.vue'
-import PageHeader from 'src/layouts/PageHeader.vue'
-import RightDrawer from 'src/layouts/RightDrawer.vue'
+import PageFooter from '@/layouts/PageFooter.vue'
+import PageHeader from '@/layouts/PageHeader.vue'
+import RightDrawer from '@/layouts/RightDrawer.vue'
 </script>

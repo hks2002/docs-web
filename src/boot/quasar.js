@@ -1,11 +1,11 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-04-04 00:23:17                               *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-07-16 20:32:26                               *
- * @FilePath              : docs-web/src/boot/quasar.js                       *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : 2025-04-04 00:23:17                                *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-06-13 22:49:33                                *
+ * @FilePath              : docs-web/src/boot/quasar.js                        *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 import { Loading, Notify, QSpinnerBars } from 'quasar'
 
 Loading.setDefaults({ spinner: QSpinnerBars, spinnerSize: 40 })

@@ -11,18 +11,18 @@
   <q-file
     v-if="DOCS_WRITE"
     v-model="filesToBeUpload"
-    :label="$t('S.UPLOAD_FILES')"
     dense
-    borderless
-    clearable
     multiple
+    clearable
+    borderless
     color="white"
     label-color="orange"
     input-class="text-white"
+    :label="$t('S.UPLOAD_FILES')"
     @update:model-value="doUploadFiles"
   >
     <template v-slot:prepend>
-      <q-icon name="cloud_upload" color="orange" />
+      <q-icon color="orange" name="cloud_upload" />
     </template>
   </q-file>
 </template>
@@ -33,7 +33,7 @@ import { storeToRefs } from 'pinia'
 import { Notify } from 'quasar'
 import { ref } from 'vue'
 
-import { useSessionStore } from 'src/stores/SessionStore'
+import { useSessionStore } from '@/stores/SessionStore'
 
 const { DOCS_WRITE } = storeToRefs(useSessionStore())
 

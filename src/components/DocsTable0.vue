@@ -2,7 +2,7 @@
 * @Author                : Robert Huang<56649783@qq.com>
 * @CreatedDate           : 2025-04-06 00:36:00
 * @LastEditors           : Robert Huang<56649783@qq.com>
-* @LastEditDate          : 2026-01-09 19:33:04
+* @LastEditDate          : 2026-06-13 22:58:20
 * @FilePath              : docs-web/src/components/DocsTable0.vue
 * @CopyRight             : Dedienne Aerospace China ZhuHai
 -->
@@ -10,11 +10,13 @@
 <template>
   <q-table
     dense
-    selection="single"
-    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'DOCS' })"
     row-key="name"
+    selection="single"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="docs"
+    :loading="showLoading"
+    :rows-per-page-options="[0]"
+    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'DOCS' })"
     :columns="[
       { name: 'name', label: $t('F.FILE_NAME'), align: 'left', field: 'name' },
       {
@@ -32,8 +34,6 @@
         },
       },
     ]"
-    :loading="showLoading"
-    :rows-per-page-options="[0]"
     @row-click="
       (evt, row, index) => {
         goTo(row.url)
@@ -44,12 +44,12 @@
       <div class="row q-gutter-x-sm">
         <q-input
           dense
-          clearable
           outlined
+          clearable
           debounce="2000"
           input-style="font-weight:bolder;text-transform:uppercase"
-          :placeholder="$t('S.DOC_SEARCH')"
           :model-value="searchPN"
+          :placeholder="$t('S.DOC_SEARCH')"
           @update:model-value="doSearch"
         >
           <template v-slot:append>
@@ -63,17 +63,17 @@
     <template v-slot:body-cell-name="props">
       <q-td :props="props">
         <q-icon
+          size="xs"
           :name="
             props.row.isDirectory ? 'img:/docs-web/imgs/folder.svg' : getDocIcon(props.row.name)
           "
-          size="xs"
         ></q-icon>
         {{ props.row.name }}
       </q-td>
     </template>
     <template v-slot:body-cell-size="props">
       <q-td :props="props">
-        {{ renderFileSize(props.row.size) }}
+        {{ humanStorageSize(props.row.size) }}
       </q-td>
     </template>
     <template v-slot:loading>
@@ -87,16 +87,19 @@
 <script setup>
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import { date } from 'quasar'
+import { date, format } from 'quasar'
 import { onMounted, ref, watch } from 'vue'
 
-import { useSessionStore } from 'src/stores/SessionStore'
-import { getDocIcon, isFolder, isSupported3DFormat, renderFileSize } from 'src/utils/file'
+import { useSessionStore } from '@/stores/SessionStore'
+import { getDocIcon, isFolder, isSupported3DFormat } from '@/utils/file'
+
+const $session = useSessionStore()
 
 const showLoading = ref(false)
 const docs = ref([])
 
-const { searchPN, currentPath } = storeToRefs(useSessionStore())
+const { humanStorageSize } = format
+const { searchPN, currentPath } = storeToRefs($session)
 
 const doSearch = (val) => {
   searchPN.value = val

@@ -9,10 +9,10 @@
 
 <template>
   <q-btn
-    color="primary"
-    icon="compress"
     no-caps
     outline
+    color="primary"
+    icon="compress"
     :label="$t('S.CLEAN_DUPLICATE_DOC')"
     @click="doIt"
   />

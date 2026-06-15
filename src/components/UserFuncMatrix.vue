@@ -9,10 +9,13 @@
 
 <template>
   <q-table
+    v-model:pagination="pagination"
     dense
     row-key="id"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="userFuncs"
+    :loading="showLoading"
+    :rows-per-page-options="[10, 20, 50, 100, 200, 500, 1000]"
     :columns="[
       { name: 'id', label: $t('F.ID'), align: 'left', field: 'id' },
       { name: 'loginName', label: $t('F.LOGIN_NAME'), align: 'left', field: 'login_name' },
@@ -23,9 +26,6 @@
       { name: 'read', label: $t('F.READ'), align: 'left', field: 'read_enable' },
       { name: 'write', label: $t('F.WRITE'), align: 'left', field: 'write_enable' },
     ]"
-    :loading="showLoading"
-    :rows-per-page-options="[10, 20, 50, 100, 200, 500, 1000]"
-    v-model:pagination="pagination"
   >
     <template v-slot:loading>
       <q-inner-loading :showing="showLoading">
@@ -69,41 +69,41 @@
       <div>Page {{ scope.pagination.page }} of {{ scope.pagesNumber }}</div>
       <q-btn
         v-if="scope.pagesNumber > 2"
-        icon="first_page"
-        color="grey-8"
+        flat
         round
         dense
-        flat
+        color="grey-8"
+        icon="first_page"
         :disable="scope.isFirstPage"
         @click="scope.firstPage"
       />
       <q-btn
-        icon="chevron_left"
-        color="grey-8"
+        flat
         round
         dense
-        flat
+        color="grey-8"
+        icon="chevron_left"
         :disable="scope.isFirstPage"
         @click="scope.prevPage"
       />
 
       <q-btn
-        icon="chevron_right"
-        color="grey-8"
+        flat
         round
         dense
-        flat
+        color="grey-8"
+        icon="chevron_right"
         :disable="scope.isLastPage"
         @click="scope.nextPage"
       />
 
       <q-btn
         v-if="scope.pagesNumber > 2"
-        icon="last_page"
-        color="grey-8"
+        flat
         round
         dense
-        flat
+        color="grey-8"
+        icon="last_page"
         :disable="scope.isLastPage"
         @click="scope.lastPage"
       />

@@ -9,10 +9,13 @@
 
 <template>
   <q-table
+    v-model:pagination="pagination"
     dense
     row-key="name"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="groupedDocs"
+    :loading="showLoading"
+    :rows-per-page-options="[10, 50, 100, 200, 500, 1000]"
     :columns="[
       {
         name: 'accessTime',
@@ -25,28 +28,25 @@
       },
       { name: 'name', label: $t('F.FILE_NAME'), align: 'left', field: 'file_name' },
     ]"
-    :loading="showLoading"
-    :rows-per-page-options="[10, 50, 100, 200, 500, 1000]"
-    v-model:pagination="pagination"
   >
     <template v-slot:top>
       <div class="text-h6">{{ $t('S.YOUR_ACCESS_HISTORY') }}</div>
-      <q-icon name="refresh" size="md" @click="doList" color="primary" class="cursor-pointer" />
+      <q-icon size="md" name="refresh" color="primary" class="cursor-pointer" @click="doList" />
       <div class="text-h6 q-ml-md">{{ $t('S.LIST_LAST', { COUNT: listCount }) }}</div>
     </template>
     <template v-slot:body="props">
-      <q-tr v-if="props.row.isGroup" :props="props" class="bg-grey-3">
+      <q-tr v-if="props.row.isGroup" class="bg-grey-3" :props="props">
         <q-td colspan="2" class="text-bold text-primary">
-          <q-icon name="folder" size="sm" class="q-mr-sm" />
+          <q-icon size="sm" name="folder" class="q-mr-sm" />
           {{ props.row.groupName }} ({{ props.row.count }})
         </q-td>
       </q-tr>
-      <q-tr v-else :props="props" class="cursor-pointer" @click="goTo(props.row.url)">
+      <q-tr v-else class="cursor-pointer" :props="props" @click="goTo(props.row.url)">
         <q-td>
           {{ date.formatDate(props.row.access_time, 'YYYY-MM-DD HH:mm:ss') }}
         </q-td>
         <q-td>
-          <q-icon :name="getDocIcon(props.row.file_name)" size="xs" class="q-mr-xs"></q-icon>
+          <q-icon size="xs" class="q-mr-xs" :name="getDocIcon(props.row.file_name)"></q-icon>
           {{ props.row.file_name }}
         </q-td>
       </q-tr>
@@ -65,9 +65,9 @@ import { date } from 'quasar'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { getDocIcon, isSupported3DFormat } from 'src/utils/file'
-import { getTimePeriod } from 'src/utils/timePeriods'
-
+import { getDocIcon, isSupported3DFormat } from '@/utils/file'
+import { getTimePeriod } from '@/utils/timePeriods'
+//TODO:
 const { t } = useI18n()
 const showLoading = ref(false)
 const docs = ref([])

@@ -10,13 +10,13 @@
 <template>
   <q-table
     dense
-    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'TLS(OLD)' })"
     row-key="name"
     table-header-style="background-color: rgb(101, 36, 161); color: white"
     :rows="docs"
-    :columns="[{ name: 'name', label: $t('F.FILE_NAME'), align: 'left', field: 'file' }]"
     :loading="showLoading"
     :rows-per-page-options="[0]"
+    :title="$t('S.DOCS_IN{LOCATION}', { LOCATION: 'TLS(OLD)' })"
+    :columns="[{ name: 'name', label: $t('F.FILE_NAME'), align: 'left', field: 'file' }]"
     @row-click="
       (evt, row, index) => {
         goTo(row.path)
@@ -36,7 +36,7 @@ import axios from 'axios'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref, watch } from 'vue'
 
-import { useSessionStore } from 'src/stores/SessionStore'
+import { useSessionStore } from '@/stores/SessionStore'
 
 const showLoading = ref(false)
 //var columns = []

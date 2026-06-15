@@ -2,13 +2,15 @@
  * @Author                : Robert Huang<56649783@qq.com>                      *
  * @CreatedDate           : 2026-05-27 11:51:30                                *
  * @LastEditors           : Robert Huang<56649783@qq.com>                      *
- * @LastEditDate          : 2026-05-27 19:14:53                                *
+ * @LastEditDate          : 2026-06-15 12:59:21                                *
  * @FilePath              : docs-web/quasar.config.js                          *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
  ******************************************************************************/
-import { defineConfig } from '#q-app/wrappers'
+import { defineConfig } from '#q-app'
+
 import { visualizer } from 'rollup-plugin-visualizer'
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
+
 import pkg from './package.json'
 
 // Configuration for your app
@@ -22,7 +24,7 @@ export default defineConfig((/* ctx */) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['quasar', 'i18n', 'router', 'axios'],
+    boot: ['quasar', 'i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss'],
@@ -53,16 +55,10 @@ export default defineConfig((/* ctx */) => {
       // vueDevtools,
       // vueOptionsAPI: false,
 
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
-
       publicPath: '/docs-web/',
-      analyze: true,
-      // env: {},
-      //rawDefine:{},
-      // ignorePublicFolder: true,
-      minify: true,
-      // polyfillModulePreload: true,
-      // distDir
+      // define:{},
+      // defineEnv: {},
+      minify: 'oxc',
 
       extendViteConf(viteConf) {
         console.log(viteConf.resolve.alias)
@@ -86,8 +82,18 @@ export default defineConfig((/* ctx */) => {
 
       vitePlugins: [
         compression({
-          algorithms: ['gzip', 'brotliCompress', defineAlgorithm('zstd', { level: 12 })],
+          algorithms: ['gzip', 'brotliCompress', defineAlgorithm('zstd', { level: 3 })],
         }),
+        [
+          'vite-plugin-checker',
+          {
+            eslint: {
+              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{js,mjs,cjs,vue}"',
+              useFlatConfig: true,
+            },
+          },
+          { server: false },
+        ],
       ],
     },
 
@@ -134,8 +140,8 @@ export default defineConfig((/* ctx */) => {
     //   rootComponent: 'src/App.vue',
     //   router: 'src/router/index',
     //   store: 'src/store/index',
-    //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
-    //   pwaServiceWorker: 'src-pwa/custom-service-worker',
+    //   pwaRegisterServiceWorker: 'src-pwa/register-sw',
+    //   pwaServiceWorker: 'src-pwa/sw/custom-sw',
     //   pwaManifestFile: 'src-pwa/manifest.json',
     //   electronMain: 'src-electron/electron-main',
     //   electronPreload: 'src-electron/electron-preload'
@@ -151,8 +157,8 @@ export default defineConfig((/* ctx */) => {
         'render', // keep this as last one
       ],
 
-      // extendPackageJson (json) {},
-      // extendSSRWebserverConf (esbuildConf) {},
+      // extendSSRPackageJson (pkgJson) {},
+      // extendSSRWebserverConf (rolldownConf) {},
 
       // manualStoreSerialization: true,
       // manualStoreSsrContextInjection: true,
@@ -162,8 +168,8 @@ export default defineConfig((/* ctx */) => {
       pwa: false,
       // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
 
-      // pwaExtendGenerateSWOptions (cfg) {},
-      // pwaExtendInjectManifestOptions (cfg) {}
+      // extendSSRGenerateSWOptions (cfg) {},
+      // extendSSRInjectManifestOptions (cfg) {}
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
@@ -171,30 +177,28 @@ export default defineConfig((/* ctx */) => {
       workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       // swFilename: 'sw.js',
       // manifestFilename: 'manifest.json',
-      // extendManifestJson (json) {},
+      // extendPWAManifestJson (json) {},
       // useCredentialsForManifestTag: true,
-      // injectPwaMetaTags: false,
-      // extendPWACustomSWConf (esbuildConf) {},
-      // extendGenerateSWOptions (cfg) {},
-      // extendInjectManifestOptions (cfg) {}
+      // injectPWAMetaTags: false,
+      // extendPWACustomSWConf (rolldownConf) {},
+      // extendPWAGenerateSWOptions (cfg) {},
+      // extendPWAInjectManifestOptions (cfg) {},
+      // extendPWASwTsConfig (tsConfig) {}
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
-    cordova: {
-      // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-    },
+    // https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
+    cordova: {},
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
+    // https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
     capacitor: {
       hideSplashscreen: true,
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
     electron: {
-      // extendElectronMainConf (esbuildConf) {},
-      // extendElectronPreloadConf (esbuildConf) {},
-
-      // extendPackageJson (json) {},
+      // extendElectronMainConf (rolldownConf) {},
+      // extendElectronPreloadConf (rolldownConf) {},
+      // extendElectronPackageJson (pkgJson) {},
 
       // Electron preload scripts (if any) from /src-electron, WITHOUT file extension
       preloadScripts: ['electron-preload'],

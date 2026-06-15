@@ -8,14 +8,14 @@
 -->
 
 <template>
-  <q-btn dense flat round size="sm" class="q-mr-xs" @click="goHome">
+  <q-btn flat dense round size="sm" class="q-mr-xs" @click="goHome">
     <q-avatar dense>
       <q-img src="imgs/logo.png" style="background-color: white"></q-img>
     </q-avatar>
   </q-btn>
 </template>
 <script setup>
-import { useSessionStore } from 'src/stores/SessionStore'
+import { useSessionStore } from '@/stores/SessionStore'
 
 const goHome = async () => {
   useSessionStore().currentPath = useSessionStore().homePath

@@ -2,31 +2,25 @@
  * @Author                : Robert Huang<56649783@qq.com>                      *
  * @CreatedDate           : NaN-NaN-NaN NaN:NaN:NaN                            *
  * @LastEditors           : Robert Huang<56649783@qq.com>                      *
- * @LastEditDate          : 2026-06-15 12:38:28                                *
- * @FilePath              : docs-web/src/stores/SessionStore.js                *
+ * @LastEditDate          : 2026-06-13 23:27:54                                *
+ * @FilePath              : docs-web/src/stores/LocaleStore.js                 *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
  ******************************************************************************/
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
-export const useSessionStore = defineStore('SessionStore', {
+export const useLocaleStore = defineStore('LocaleStore', {
   state: () => ({
-    userInfo: '',
-    userName: '',
-    homePath: '/docs-api/docs',
-    currentPath: '/docs-api/docs',
-    searchPN: '',
-    BPCode: '',
-    BPName: '',
-    DOCS_WRITE: false,
-    DOCS_READ: false,
-    ADMIN: false,
+    locale: 'en-US',
+    drawerRight: false,
+    drawerLeft: false,
+    waterMarkerNotified: false,
   }),
   persist: {
     enabled: true,
-    storage: sessionStorage,
+    storage: localStorage,
   },
 })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useSessionStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useLocaleStore, import.meta.hot))
 }

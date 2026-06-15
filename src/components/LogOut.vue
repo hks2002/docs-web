@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <q-btn dense flat size="sm" icon="logout" @click="doLogout">
+  <q-btn flat dense size="sm" icon="logout" @click="doLogout">
     <q-tooltip>{{ $t('S.EXIT') }}</q-tooltip>
   </q-btn>
 </template>

@@ -8,24 +8,24 @@
 -->
 
 <template>
-  <span v-if="!BPCode || BPCode.length != 5" style="color: white" class="q-px-sm">
+  <span v-if="!BPCode || BPCode.length != 5" class="q-px-sm" style="color: white">
     {{ $t('S.DO_NOT_FORGET_BP_NAME') }}
   </span>
   <span class="q-px-sm">
     <q-input
+      v-model="BPCode"
       dense
       clearable
-      debounce="2000"
       color="white"
+      debounce="2000"
       input-class="text-orange"
       :placeholder="$t('S.BP_CODE')"
-      v-model="BPCode"
       @update:model-value="searchBP"
     >
     </q-input>
   </span>
   <span class="q-px-sm">
-    <q-icon name="people" color="primary" size="32px"></q-icon>{{ BPName }}
+    <q-icon size="32px" name="people" color="primary"></q-icon>{{ BPName }}
   </span>
 </template>
 
@@ -36,11 +36,11 @@ import { useQuasar } from 'quasar'
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useLocalStore } from 'src/stores/LocalStore'
-import { useSessionStore } from 'src/stores/SessionStore'
+import { useLocaleStore } from '@/stores/LocaleStore'
+import { useSessionStore } from '@/stores/SessionStore'
 
 const { BPCode, BPName } = storeToRefs(useSessionStore())
-const { waterMarkerNotified } = storeToRefs(useLocalStore())
+const { waterMarkerNotified } = storeToRefs(useLocaleStore())
 
 const $q = useQuasar()
 const { t } = useI18n()

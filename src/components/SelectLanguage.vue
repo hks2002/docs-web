@@ -9,16 +9,16 @@
 
 <template>
   <q-select
+    v-model="locale"
     dense
     borderless
     emit-value
     map-options
     options-dense
     color="primary"
-    v-model="locale"
-    :options="langOptions"
     option-label="label"
     option-value="value"
+    :options="langOptions"
   >
     <template #selected-item="{ opt }">
       <q-item dense class="q-pa-none q-pl-md">
@@ -46,11 +46,12 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useLocalStore } from 'src/stores/LocalStore'
-import { langOptions, loadLanguage } from 'src/utils/i18n.js'
 import { watch } from 'vue'
 
-const { locale } = storeToRefs(useLocalStore())
+import { langOptions, loadLanguage } from '@/composables/useI18n.js'
+import { useLocaleStore } from '@/stores/LocaleStore'
+
+const { locale } = storeToRefs(useLocaleStore())
 watch(locale, (langIso) => {
   loadLanguage(langIso)
 })

@@ -1,16 +1,17 @@
 /*******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @Author                : <>                                                 *
  * @CreatedDate           : 2025-07-16 20:51:17                                *
- * @LastEditors           : Robert Huang<56649783@qq.com>                      *
- * @LastEditDate          : 2026-05-27 12:55:51                                *
+ * @LastEditors           : <>                                                 *
+ * @LastEditDate          : 2026-06-13 17:08:02                                *
  * @FilePath              : docs-web/src/stores/index.js                       *
  * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
  ******************************************************************************/
+import { defineStore } from '#q-app'
+
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { store } from 'quasar/wrappers'
 
-export default store((/* { ssrContext } */) => {
+export default defineStore((/* { ssrContext } */) => {
   const pinia = createPinia()
 
   pinia.use(piniaPluginPersistedstate)

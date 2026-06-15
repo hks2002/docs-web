@@ -9,9 +9,9 @@
 
 <template>
   <q-btn
-    color="primary"
     no-caps
     outline
+    color="primary"
     icon="cleaning_services"
     :label="$t('S.CLEAN_NON_EXISTS_DOC')"
     @click="doIt"

@@ -1,29 +1,29 @@
-/******************************************************************************
- * @Author                : Robert Huang<56649783@qq.com>                     *
- * @CreatedDate           : 2025-04-06 21:20:18                               *
- * @LastEditors           : Robert Huang<56649783@qq.com>                     *
- * @LastEditDate          : 2025-04-20 03:33:25                               *
- * @FilePath              : docs-web/src/router/routes.js                     *
- * @CopyRight             : Dedienne Aerospace China ZhuHai                   *
- *****************************************************************************/
+/*******************************************************************************
+ * @Author                : Robert Huang<56649783@qq.com>                      *
+ * @CreatedDate           : 2025-04-06 21:20:18                                *
+ * @LastEditors           : Robert Huang<56649783@qq.com>                      *
+ * @LastEditDate          : 2026-06-13 23:03:51                                *
+ * @FilePath              : docs-web/src/router/routes.js                      *
+ * @CopyRight             : Dedienne Aerospace China ZhuHai                    *
+ ******************************************************************************/
 
 const routes = [
   {
     path: '/',
     name: 'MainLayout',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', name: 'IndexPage', component: () => import('pages/IndexPage.vue') }],
+    component: () => import('@/layouts/MainLayout.vue'),
+    children: [{ path: '', name: 'IndexPage', component: () => import('@/pages/IndexPage.vue') }],
   },
   {
     path: '/',
     name: 'DefaultLayout',
-    component: () => import('layouts/DefaultLayout.vue'),
+    component: () => import('@/layouts/DefaultLayout.vue'),
     children: [
-      { path: 'Login', name: 'LoginPage', component: () => import('pages/LoginPage.vue') },
+      { path: 'Login', name: 'LoginPage', component: () => import('@/pages/LoginPage.vue') },
       {
         path: 'Exception/:ErrorCode',
         name: 'Exception',
-        component: () => import('pages/ExceptionPage.vue'),
+        component: () => import('@/pages/ExceptionPage.vue'),
         props: (route) => {
           if (
             route.params.ErrorCode !== '403' &&
@@ -43,7 +43,7 @@ const routes = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('layouts/DefaultLayout.vue'),
+    component: () => import('@/layouts/DefaultLayout.vue'),
     redirect: '/Exception/404',
   },
 ]
