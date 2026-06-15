@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/hks2002/docs-web/compare/v1.6.0...v1.7.0) (2026-06-15)
+
+
+### Features
+
+* ✨[@quasar-vite](https://github.com/quasar-vite) V3 ([a12bad8](https://github.com/hks2002/docs-web/commit/a12bad85b675e8edd26af87c96bb4a2cb5d4347a))
+
 ## [1.6.0](https://github.com/hks2002/docs-web/compare/v1.5.0...v1.6.0) (2026-06-01)
 
 
